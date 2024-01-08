@@ -36,7 +36,7 @@ const initialValues = {
 		address: "",
 		telephone: "",
 		email: "",
-		identificationNumber: "",
+		identificationNo: "",
 		accountNo: "",
 	},
 	productDetails: [
@@ -87,7 +87,7 @@ const validationSchema = Yup.object().shape({
 		address: Yup.string().required("Required"),
 		telephone: Yup.string().required("Required"),
 		email: Yup.string().email("Invalid email").required("Required"),
-		identificationNumber: Yup.string().required("Required"),
+		identificationNo: Yup.string().required("Required"),
 		accountNo: Yup.string().required("Required"),
 	}),
 	productDetails: Yup.array().of(
@@ -153,7 +153,6 @@ const AddStorage = () => {
 	}, []);
 
 	const handleSubmit = async (values, actions) => {
-		console.log(values);
 		try {
 			const response = await dispatch(addStorage(me._id, token, values));
 			// extract success message

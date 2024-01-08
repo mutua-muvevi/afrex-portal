@@ -8,6 +8,8 @@ const ICONS = {
 	home: "heroicons:home-solid",
 
 	leads: "mdi:leads",
+	shipment: "mdi:truck-delivery",
+	storage: "mdi:warehouse",
 };
 
 const navConfig = [
@@ -28,6 +30,20 @@ const navConfig = [
 				title: "leads",
 				path: PATH_DASHBOARD.general.leads,
 				icon: ICONS.leads,
+			},
+
+			// shipment
+			{
+				title: "shipment",
+				path: PATH_DASHBOARD.general.shipment,
+				icon: ICONS.shipment,
+			},
+
+			// leads
+			{
+				title: "storage",
+				path: PATH_DASHBOARD.general.storage,
+				icon: ICONS.storage,
 			},
 		],
 	},

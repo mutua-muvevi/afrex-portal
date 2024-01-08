@@ -40,6 +40,8 @@ import {
 	//-----------home-------------------
 	DashboardMain,
 	Leads,
+	Shipment,
+	Storage,
 } from "./elements";
 
 import CompactLayout from "../layout/compact/compact-layout";
@@ -122,6 +124,12 @@ export default function Router() {
 				},
 
 				{ path: "leads", element: <Leads /> },
+
+				{ path: "shipment", element: <Shipment/> },
+
+				{ path: "storage", element: <Storage/> },
+
+				{ path: "*", element: <Navigate to="/404" replace /> },
 			],
 		},
 

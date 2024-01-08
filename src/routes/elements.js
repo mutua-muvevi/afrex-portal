@@ -77,3 +77,6 @@ export const AccountProfile = Loadable(lazy(() => import("../pages/dashboard/acc
 //leads
 export const Leads = Loadable(lazy(() => import("../pages/dashboard/leads/leads")));
 
+//shipment
+export const Shipment = Loadable(lazy(() => import("../pages/dashboard/shipment/shipment")));
+export const Storage = Loadable(lazy(() => import("../pages/dashboard/storage/storage")));

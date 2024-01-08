@@ -20,67 +20,8 @@ import ShippingEvents from "./events";
 import ShippingDeparture from "./departure";
 import ShippingArrival from "./arrival";
 import Iconify from "../../../../components/iconify";
-import { addShipment } from "../../../../redux/slices/shipment";
+import { editShipment } from "../../../../redux/slices/shipment";
 import { useDispatch, useSelector } from "../../../../redux/store";
-
-const initialValues = {
-	shipper: {
-		fullname: "",
-		company: "",
-		address: "",
-		telephone: "",
-		email: "",
-	},
-
-	cosignee: {
-		fullname: "",
-		company: "",
-		address: "",
-		telephone: "",
-		email: "",
-	},
-
-	collector: {
-		fullname: "",
-		company: "",
-		address: "",
-		telephone: "",
-		email: "",
-	},
-
-	departure: {
-		address: "",
-		departure_date: "",
-		departure_time: "",
-		airport_code: "",
-	},
-
-	arrival: {
-		address: "",
-		arrival_date: "",
-		arrival_time: "",
-		airport_code: "",
-	},
-
-	items: [
-		{
-			description: "",
-			unit: "",
-			weight: "",
-			amount: "",
-		},
-	],
-
-	events: [
-		{
-			date: "",
-			time: "",
-			address: "",
-			status: "",
-			description: "",
-		},
-	],
-};
 
 const validationSchema = Yup.object().shape({
 	shipper: Yup.object().shape({
@@ -152,14 +93,15 @@ const steps = [
 	"Preview",
 ];
 
-const AddShipment = () => {
+const EditShipment = () => {
 	const [activeStep, setActiveStep] = useState(0);
 
 	const [alertMessage, setAlertMessage] = useState("");
 	const [alertSeverity, setAlertSeverity] = useState("info");
-	
+
 	const token = localStorage.getItem("token");
 	const { me } = useSelector((state) => state.user);
+	let { shipment } = useSelector((state) => state.shipment);
 	const dispatch = useDispatch();
 
 	const handleNext = useCallback(() => {
@@ -170,13 +112,56 @@ const AddShipment = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	}, []);
 
+	const initialValues = {
+		shipper: shipment && shipment.shipper ? JSON.parse(shipment.shipper) : {
+			fullname: "",
+			company: "",
+			address: "",
+			telephone: "",
+			email: "",
+		},
+
+		cosignee: shipment && shipment.cosignee ? JSON.parse(shipment.cosignee) : {
+			fullname: "",
+			company: "",
+			address: "",
+			telephone: "",
+			email: "",
+		},
+
+		collector: shipment && shipment.collector ? JSON.parse(shipment.collector) : {
+			fullname: "",
+			company: "",
+			address: "",
+			telephone: "",
+			email: "",
+		},
+
+		departure: shipment && shipment.departure ? JSON.parse(shipment.departure) : {
+			address: "",
+			departure_date: "",
+			departure_time: "",
+			airport_code: "",
+		},
+
+		arrival: shipment && shipment.arrival ? JSON.parse(shipment.arrival) : {
+			address: "",
+			arrival_date: "",
+			arrival_time: "",
+			airport_code: "",
+		},
+
+		items: shipment.items,
+
+		events: shipment.events,
+	};
+
 	const handleSubmit = async (values, actions) => {
+		console.log(values)
 		try {
-			console.log(values);
-			const response = await dispatch(addShipment(me._id, token, values));
+			const response = await dispatch(editShipment(me._id, token, shipment._id, values));
 			// extract success message
 			const { success, message } = response;
-			console.log("respobn", response)
 
 			// Set the alert message from the response and determine severity
 			setAlertMessage(message);
@@ -185,7 +170,7 @@ const AddShipment = () => {
 			// close the modal
 			if (success) {
 				setTimeout(() => {
-					window.location.reload();
+					// window.location.reload();
 				}, 2000);
 			}
 		} catch (error) {
@@ -195,7 +180,6 @@ const AddShipment = () => {
 
 		actions.setSubmitting(false);
 	};
-
 	return (
 		<>
 			<Stack sx={{ pr: 2, mb: 3 }}>
@@ -300,7 +284,6 @@ const AddShipment = () => {
 								</Button>
 								<Box sx={{ flex: "1 1 auto" }} />
 								{activeStep === steps.length - 1 ? (
-									// 'Submit' button on the final step
 									<Button
 										variant="contained"
 										type="submit"
@@ -310,7 +293,6 @@ const AddShipment = () => {
 										Submit
 									</Button>
 								) : (
-									// 'Next' button on all other steps
 									<Button
 										variant="contained"
 										type="button"
@@ -318,7 +300,6 @@ const AddShipment = () => {
 										endIcon={
 											<Iconify icon="mdi:arrow-right" />
 										}
-										// disabled={!isValid }
 									>
 										Next
 									</Button>
@@ -332,4 +313,4 @@ const AddShipment = () => {
 	);
 };
 
-export default AddShipment;
+export default EditShipment;

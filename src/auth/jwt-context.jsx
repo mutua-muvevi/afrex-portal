@@ -16,6 +16,7 @@ import { useDispatch } from "../redux/store";
 //fetching initial data
 import { fetchMe } from "../redux/slices/user";
 import { fetchAllLeads } from "../redux/slices/leads";
+import { fetchAllShipments } from "../redux/slices/shipment";
 
 // ----------------------------------------------------------------------
 
@@ -99,6 +100,11 @@ export function AuthProvider({ children }) {
 
 				//await fetch all leads
 				await reduxDispatch(fetchAllLeads(token, user._id));
+
+				//fetch all shipments
+				await reduxDispatch(fetchAllShipments());
+
+				//fecth all storage
 
 				dispatch({
 					type: "INITIAL",

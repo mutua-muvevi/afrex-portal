@@ -6,6 +6,7 @@ import storage from "redux-persist/lib/storage";
 // slices
 import UserReducer from "./slices/user";
 import LeadsReducer from "./slices/leads";
+import ShipmentReducer from "./slices/shipment";
 
 // ----------------------------------------------------------------------
 
@@ -15,6 +16,7 @@ const config = {
 	whitelist: [
 		"user",
 		"leads",
+		"shipment"
 	],
 	blacklist: [],
 };
@@ -22,6 +24,7 @@ const config = {
 export const rootReducer = combineReducers({
 	user: UserReducer,
 	leads: LeadsReducer,
+	shipment: ShipmentReducer
 });
 
 const persistedReducer = persistReducer(config, rootReducer);

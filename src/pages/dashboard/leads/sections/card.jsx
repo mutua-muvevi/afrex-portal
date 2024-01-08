@@ -130,7 +130,7 @@ const LeadCard = ({ lead }) => {
 										Service:
 									</Typography>
 									<Typography variant="body2">
-										{lead.service ? lead.service.name: "No service"}
+										{lead.service ? lead.service: "No service"}
 									</Typography>
 								</Stack>
 							</Stack>

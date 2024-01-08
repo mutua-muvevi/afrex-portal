@@ -143,7 +143,7 @@ export default function ContactsPopover() {
 				</Typography>
 
 				<Scrollbar sx={{ height: ITEM_HEIGHT * 6 }}>
-					{contacts.map((contact) => (
+					{contacts ? contacts.map((contact) => (
 						<MenuItem
 							key={contact._id}
 							sx={{ height: ITEM_HEIGHT }}
@@ -185,14 +185,14 @@ export default function ContactsPopover() {
 								}}
 							/>
 						</MenuItem>
-					))}
+					)) : ""}
 				</Scrollbar>
 			</MenuPopover>
 
 			<ModalComponent
 				open={openLead}
 				onClose={() => setOpenLead(false)}
-				title={`Lead : ${lead.fullname}`}
+				title={`Lead `}
 				fullWidth
 				maxWidth="xl"
 				backgroundIcon="fa-solid:funnel-dollar"

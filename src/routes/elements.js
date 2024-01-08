@@ -73,67 +73,7 @@ export const AccountOverview = Loadable(lazy(() => import("../pages/dashboard/ac
 export const AccountSettings = Loadable(lazy(() => import("../pages/dashboard/account/settings/settings")));
 export const AccountProfile = Loadable(lazy(() => import("../pages/dashboard/account/profile/profile")));
 
-//bookings
-export const Bookings = Loadable(lazy(() => import("../pages/dashboard/bookings/bookings")));
-
-//clients
-export const Clients = Loadable(lazy(() => import("../pages/dashboard/clients/clients")));
 
 //leads
 export const Leads = Loadable(lazy(() => import("../pages/dashboard/leads/leads")));
 
-//storage
-export const Storage = Loadable(lazy(() => import("../pages/dashboard/storage/overview")));
-
-//services
-export const Services = Loadable(lazy(() => import("../pages/dashboard/services/services")));
-
-//tools
-export const Tools = Loadable(lazy(() => import("../pages/dashboard/tools/tools")));
-
-//manuals
-export const Manuals = Loadable(lazy(() => import("../pages/dashboard/manuals/manuals")));
-
-//events
-export const EventsMain = Loadable(lazy(() => import("../pages/dashboard/events/events")));
-
-//the tools
-export const Competition = Loadable(lazy(() => import("../tools/competition/competition")));
-export const Events = Loadable(lazy(() => import("../tools/events/events")));
-export const Jumps = Loadable(lazy(() => import("../tools/jumps/jumps")));
-export const SEO = Loadable(lazy(() => import("../tools/seo/seo")));
-export const Weather = Loadable(lazy(() => import("../tools/weather/weather")));
-export const Gears = Loadable(lazy(() => import("../tools/gears/gears")));
-
-//social
-export const FaceBook = Loadable(lazy(() => import("../pages/dashboard/social/facebook/facebook")));
-export const Instagram = Loadable(lazy(() => import("../pages/dashboard/social/instagram/instagram")));
-export const TikTok = Loadable(lazy(() => import("../pages/dashboard/social/tiktok/tiktok")));
-
-//website
-export const WebsiteOverview = Loadable(lazy(() => import("../pages/dashboard/website/overview/overview")));
-export const WebsiteHomepage = Loadable(lazy(() => import("../pages/dashboard/website/homepage/homepage")));
-export const WebsiteAbout = Loadable(lazy(() => import("../pages/dashboard/website/about/about")));
-export const WebsitePricing = Loadable(lazy(() => import("../pages/dashboard/website/pricing/pricing")));
-export const WebsiteServices = Loadable(lazy(() => import("../pages/dashboard/website/services/services")));
-
-//landing
-export const LandingOverview = Loadable(lazy(() => import("../pages/dashboard/landing/overview/overview")));
-
-//Blogs
-export const Blogs = Loadable(lazy(() => import("../pages/dashboard/blogs/blogs")));
-
-//Announcements
-export const Announcements = Loadable(lazy(() => import("../pages/dashboard/announcements/announcements")));
-
-// Terms
-export const Terms = Loadable(lazy(() => import("../pages/dashboard/terms/terms")));
-
-//Curriculums
-export const Curriculums = Loadable(lazy(() => import("../pages/dashboard/curriculums/curriculums")));
-
-//Voicemails
-export const Voicemails = Loadable(lazy(() => import("../pages/dashboard/voicemails/voicemails")));
-
-//Pages
-export const WebsitePages = Loadable(lazy(() => import("../pages/dashboard/website/pages/pages")));

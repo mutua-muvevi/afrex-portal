@@ -58,7 +58,6 @@ const LeadMain = () => {
 				size="md"
 				fullWidth
 				maxWidth="lg"
-				backgroundIcon="fa:plus"
 				height={650}
 			>
 				<NewLead onClose={() => setOpenAddLead(false)}/>

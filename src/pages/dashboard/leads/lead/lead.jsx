@@ -20,7 +20,7 @@ const Lead = () => {
 		},
 		{
 			name: "Service",
-			value: lead.service ? lead.service.name : "No source",
+			value: lead.service ? lead.service : "No source",
 		},
 		{
 			name: "Country",

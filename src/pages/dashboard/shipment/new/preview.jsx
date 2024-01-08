@@ -158,6 +158,12 @@ const ShipmentPreview = ({ values }) => {
 					<Typography variant="body1">{item.description}</Typography>
 				</Stack>
 			))}
+
+			<Stack direction="row" spacing={1} sx={styledStack}>
+				<Typography variant="h6"color="primary">Track Number</Typography>
+
+				<Typography variant="body1">{values.track_number}</Typography>
+			</Stack>
 		</Stack>
 	);
 };

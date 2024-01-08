@@ -20,6 +20,8 @@ import ShippingEvents from "./events";
 import ShippingDeparture from "./departure";
 import ShippingArrival from "./arrival";
 import Iconify from "../../../../components/iconify";
+import { addShipment } from "../../../../redux/slices/shipment";
+import { useDispatch, useSelector } from "../../../../redux/store";
 
 const initialValues = {
 	shipper: {
@@ -159,6 +161,10 @@ const AddShipment = () => {
 
 	const [alertMessage, setAlertMessage] = useState("");
 	const [alertSeverity, setAlertSeverity] = useState("info");
+	
+	const token = localStorage.getItem("token");
+	const { me } = useSelector((state) => state.user);
+	const dispatch = useDispatch();
 
 	const handleNext = useCallback(() => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -171,20 +177,21 @@ const AddShipment = () => {
 	const handleSubmit = async (values, actions) => {
 		try {
 			console.log(values);
-			// const response = await dispatch(addService(me._id, token, values));
-			//extract success message
-			// const { success, message } = response.data;
+			const response = await dispatch(addShipment(me._id, token, values));
+			// extract success message
+			const { success, message } = response;
+			console.log("respobn", response)
 
 			// Set the alert message from the response and determine severity
-			// setAlertMessage(message);
-			// setAlertSeverity(success ? "success" : "error");
+			setAlertMessage(message);
+			setAlertSeverity(success ? "success" : "error");
 
-			//close the modal
-			// if (success) {
-			// 	setTimeout(() => {
-			// 		window.location.reload();
-			// 	}, 2000);
-			// }
+			// close the modal
+			if (success) {
+				setTimeout(() => {
+					window.location.reload();
+				}, 2000);
+			}
 		} catch (error) {
 			setAlertMessage(error.error || "An error occurred.");
 			setAlertSeverity("error");

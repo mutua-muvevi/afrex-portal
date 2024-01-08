@@ -1,16 +1,16 @@
 import { useState } from "react";
 import DataGridCustom from "../../../../components/datagrid/custom";
-import { setShipment } from "../../../../redux/slices/shipment";
+import { setStorage } from "../../../../redux/slices/storage";
 import { useSelector, useDispatch } from "../../../../redux/store";
 import ModalComponent from "../../../../components/modal/modal";
-import EditShipment from "../edit/edit";
-import DeleteShipment from "../delete/delete";
+import EditStorage from "../edit/edit";
+import DeleteStorage from "../delete/delete";
 
-const ShipmentTable = () => {
+const StorageTable = () => {
 	const [openEdit, setOpenEdit] = useState(false);
 	const [openDelete, setOpenDelete] = useState(false);
 	const dispatch = useDispatch();
-	const { shipments: { data: allShipment } } = useSelector((state) => state.shipment);
+	const { storages: { data: allStorage } } = useSelector((state) => state.storage);
 
 	const modalActions = [
 		{
@@ -18,7 +18,7 @@ const ShipmentTable = () => {
 			action: "edit",
 			icon: "ic:baseline-edit",
 			onClick: (rowData) => {
-				dispatch(setShipment(rowData))
+				dispatch(setStorage(rowData))
 				setOpenEdit(true);
 			}
 		},
@@ -28,7 +28,7 @@ const ShipmentTable = () => {
 			icon: "ic:baseline-delete",
 			color:"error",
 			onClick: (rowData) => {
-				dispatch(setShipment(rowData))
+				dispatch(setStorage(rowData))
 				setOpenDelete(true);
 			}
 		},
@@ -37,29 +37,29 @@ const ShipmentTable = () => {
 	return (
 		<>
 			<DataGridCustom
-				data={allShipment}
-				title="Shipment List"
-				modalTitle="Shipment"
+				data={allStorage}
+				title="Storage List"
+				modalTitle="Storage"
 				modalActions={modalActions}
 			/>
 
 			<ModalComponent
 				open={openEdit}
 				onClose={() => setOpenEdit(false)}
-				title="EDit Shipment"
+				title="Edit Storage"
 				height="70vh"
 			>
-				<EditShipment onClose={() => setOpenEdit(false)}/>
+				<EditStorage onClose={() => setOpenEdit(false)}/>
 			</ModalComponent>
 
 			<ModalComponent
 				open={openDelete}
 				onClose={() => setOpenEdit(false)}
-				title="Edit Shipment"
+				title="Edit Storage"
 				maxWidth="sm"
 				height={250}
 			>
-				<DeleteShipment onClose={() => setOpenDelete(false)}/>
+				<DeleteStorage onClose={() => setOpenDelete(false)}/>
 			</ModalComponent>
 
 			
@@ -67,4 +67,4 @@ const ShipmentTable = () => {
 	);
 };
 
-export default ShipmentTable;
+export default StorageTable;

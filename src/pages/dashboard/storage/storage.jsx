@@ -2,6 +2,7 @@ import { Page } from "../../../components/page";
 import { PATH_DASHBOARD } from "../../../routes/path";
 
 import CustomBreadcrumbs from "../../../components/custom-breadcrumbs";
+import StorageMain from "./sections/main";
 
 const Storage = () => {
 	return (
@@ -16,7 +17,7 @@ const Storage = () => {
 					{ name: "Storage" },
 				]}
 			/>
-			<div>Storage Home</div>
+			<StorageMain/>
 		</Page>
 	);
 };

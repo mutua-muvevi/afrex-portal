@@ -7,6 +7,7 @@ import storage from "redux-persist/lib/storage";
 import UserReducer from "./slices/user";
 import LeadsReducer from "./slices/leads";
 import ShipmentReducer from "./slices/shipment";
+import StorageReducer from "./slices/storage";
 
 // ----------------------------------------------------------------------
 
@@ -24,7 +25,8 @@ const config = {
 export const rootReducer = combineReducers({
 	user: UserReducer,
 	leads: LeadsReducer,
-	shipment: ShipmentReducer
+	shipment: ShipmentReducer,
+	storage: StorageReducer
 });
 
 const persistedReducer = persistReducer(config, rootReducer);

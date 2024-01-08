@@ -47,6 +47,12 @@ export const PATH_DASHBOARD = {
 
 		// leads:
 		leads: path(ROOTS_DASHBOARD, "/leads"),
+
+		//shipment
+		shipment: path(ROOTS_DASHBOARD, "/shipment"),
+
+		// storage
+		storage: path(ROOTS_DASHBOARD, "/storage"),
 	},
 
 

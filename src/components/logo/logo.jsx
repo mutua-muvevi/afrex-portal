@@ -2,28 +2,34 @@ import PropTypes from "prop-types";
 import { forwardRef } from "react";
 import { Link as RouterLink } from "react-router-dom";
 // @mui
-import { Box, Link } from "@mui/material";
+import { Box, Link, useTheme } from "@mui/material";
 
 const logoUrl = "https://res.cloudinary.com/dqweh6zte/image/upload/v1679650180/skydive%20rhino/images/skydive_rhino_kenya_logo_trnkqy.png"
 // ----------------------------------------------------------------------
 
 const Logo = forwardRef(({ disabledLink = false, width, height, sx, ...other }, ref) => {
+	const logoLight ="https://res.cloudinary.com/dqweh6zte/image/upload/v1704747044/afrex/Logo/Afrex_logo_white_fjx37r.png";
+	const logoDark = "https://res.cloudinary.com/dqweh6zte/image/upload/v1704747053/afrex/Logo/Afrex_logo_black_osq8sr.png";
+
+	const theme = useTheme();
 
 	const logo = (
 		<Box
 			ref={ref}
 			component="div"
 			sx={{
-				width: width ? width : 40,
+				width: width ? width : 50,
 				height:  height ? height : 40,
 				display: "inline-flex",
 				...sx,
 			}}
 			{...other}
 		>
-			<img src={logoUrl} alt="sky dive rhino logo" style={{
+			<img src={theme.palette.mode === "dark" ? logoLight : logoDark} alt="sky dive rhino logo" style={{
 				minWidth: "75px"
 			}}/>
+
+		
 
 		</Box>
 	);

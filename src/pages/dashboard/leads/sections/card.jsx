@@ -16,7 +16,6 @@ import ModalComponent from "../../../../components/modal/modal";
 import Lead from "../lead/lead";
 import EditLead from "../edit/edit";
 import DeleteLead from "../delete/delete";
-import ConvertLead from "../convert/convert";
 
 const LeadCard = ({ lead }) => {
 	const theme = useTheme();
@@ -24,7 +23,6 @@ const LeadCard = ({ lead }) => {
 	const [openLead, setOpenLead] = useState(false);
 	const [openEditLead, setOpenEditLead] = useState(false);
 	const [openDeleteLead, setOpenDeleteLead] = useState(false);
-	const [openConvertLeadToClient, setOpenConvertLeadToClient] =useState(false);
 
 	const dispatch = useDispatch();
 
@@ -48,24 +46,11 @@ const LeadCard = ({ lead }) => {
 		setOpenDeleteLead(true);
 	};
 
-	//convert to client
-	const handleConvertToClient = () => {
-		dispatch(setLead(lead));
-
-		setOpenConvertLeadToClient(true);
-	};
-
 	const modalActions = [
 		{
 			label: "Edit",
 			icon: "uiw:edit",
 			onClick: handleEditLead,
-		},
-		{
-			label: "Convert to Client",
-			icon: "mdi:user-convert",
-			onClick: handleConvertToClient,
-			color: "success",
 		},
 		{
 			label: "Delete",
@@ -173,18 +158,6 @@ const LeadCard = ({ lead }) => {
 				height={200}
 			>
 				<DeleteLead onClose={() => setOpenDeleteLead(false)}/>
-			</ModalComponent>
-
-			{/* Convert to Client Modal */}
-			<ModalComponent
-				open={openConvertLeadToClient}
-				onClose={() => setOpenConvertLeadToClient(false)}
-				title="Convert a Lead to Client"
-				fullWidth
-				maxWidth="sm"
-				height={200}
-			>
-				<ConvertLead onClose={() => setOpenConvertLeadToClient(false)}/>
 			</ModalComponent>
 		</>
 	);

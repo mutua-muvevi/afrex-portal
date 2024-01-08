@@ -11,164 +11,138 @@ import {
 	Stepper,
 } from "@mui/material";
 
-import ShippingItems from "./items";
-import ShipmentShippers from "./shipper";
-import ShipmentConsignee from "./cosignee";
-import ShipmentPreview from "./preview";
-import ShipmentCollector from "./collector";
-import ShippingEvents from "./events";
-import ShippingDeparture from "./departure";
-import ShippingArrival from "./arrival";
+import Depositor from "./depositor";
+import Acceptance from "./acceptance";
+import Others from "./others";
+import ProductDetail from "./product";
+import Owner from "./owner";
+
 import Iconify from "../../../../components/iconify";
-import { addShipment } from "../../../../redux/slices/shipment";
-import { useDispatch, useSelector } from "../../../../redux/store"
+import { addStorage } from "../../../../redux/slices/storage";
+import { useDispatch, useSelector } from "../../../../redux/store";
+import Preview from "./preview";
 
 const initialValues = {
-	shipper: {
+	depositor: {
 		fullname: "",
 		company: "",
 		address: "",
 		telephone: "",
 		email: "",
 	},
-
-	consignee: {
+	owner: {
 		fullname: "",
 		company: "",
 		address: "",
 		telephone: "",
 		email: "",
+		identificationNo: "",
+		accountNo: "",
 	},
-
-	collector: {
-		fullname: "",
-		company: "",
-		address: "",
-		telephone: "",
-		email: "",
-	},
-
-	departure: {
-		origin: "",
-		destination: "",
-		departure_date: "",
-		departure_time: "",
-		departure_flight: "",
-		departure_airline: "",
-	},
-
-	arrival: {
-		origin: "",
-		destination: "",
-		arrival_date: "",
-		arrival_time: "",
-		arrival_flight: "",
-		arrival_airline: "",
-	},
-
-	items: [
+	productDetails: [
 		{
+			HSCode: "",
+			packagesNo: "",
+			netQuantity: "",
+			marketRate: "",
+			totalMarketValue: "",
 			description: "",
-			unit: "",
-			weight: "",
-			amount: "",
 		},
 	],
-
-	events: [
-		{
+	acceptance: {
+		from: {
 			date: "",
 			time: "",
-			address: "",
-			status: "",
-			description: "",
 		},
-	],
+		to: {
+			date: "",
+			time: "",
+		}
+	},
 
-	track_number: ""
+	privateMarks: "",
+	handlingCharges: "",
+	assuredFor: "",
+	receiptNumber: "",
+	receiptValidUpTo: "",
+	productOrigin: "",
+	wareHouseLocation: "",
+	receivedBy: "",
+	depositDate: "",
+	depositTime: "",
+	track_number: "",
 };
 
 const validationSchema = Yup.object().shape({
-	shipper: Yup.object().shape({
+	depositor: Yup.object().shape({
 		fullname: Yup.string().required("Required"),
 		company: Yup.string().required("Required"),
 		address: Yup.string().required("Required"),
 		telephone: Yup.string().required("Required"),
 		email: Yup.string().email("Invalid email").required("Required"),
 	}),
-
-	consignee: Yup.object().shape({
+	owner: Yup.object().shape({
 		fullname: Yup.string().required("Required"),
 		company: Yup.string().required("Required"),
 		address: Yup.string().required("Required"),
 		telephone: Yup.string().required("Required"),
 		email: Yup.string().email("Invalid email").required("Required"),
+		identificationNo: Yup.string().required("Required"),
+		accountNo: Yup.string().required("Required"),
 	}),
-
-	collector: Yup.object().shape({
-		fullname: Yup.string().required("Required"),
-		company: Yup.string().required("Required"),
-		address: Yup.string().required("Required"),
-		telephone: Yup.string().required("Required"),
-		email: Yup.string().email("Invalid email").required("Required"),
-	}),
-
-	departure: Yup.object().shape({
-		address: Yup.string().required("Required"),
-		airport_code: Yup.string().required("Required"),
-		departure_date: Yup.string().required("Required"),
-		departure_time: Yup.string().required("Required"),
-	}),
-
-	arrival: Yup.object().shape({
-		address: Yup.string().required("Required"),
-		airport_code: Yup.string().required("Required"),
-		arrival_date: Yup.string().required("Required"),
-		arrival_time: Yup.string().required("Required"),
-	}),
-
-	items: Yup.array().of(
+	productDetails: Yup.array().of(
 		Yup.object().shape({
-			description: Yup.string(),
-			unit: Yup.string().required("Required"),
-			weight: Yup.string().required("Required"),
-			amount: Yup.string().required("Required"),
-		})
-	),
-
-	events: Yup.array().of(
-		Yup.object().shape({
-			date: Yup.string().required("Required"),
-			time: Yup.string().required("Required"),
-			address: Yup.string().required("Required"),
-			status: Yup.string().required("Required"),
+			HSCode: Yup.string().required("Required"),
+			packagesNo: Yup.string().required("Required"),
+			netQuantity: Yup.string().required("Required"),
+			marketRate: Yup.string().required("Required"),
+			totalMarketValue: Yup.string().required("Required"),
 			description: Yup.string().required("Required"),
 		})
 	),
 
-	track_number: Yup.string().required()
+	acceptance: Yup.object().shape({
+		from: Yup.object().shape({
+			date: Yup.string().required("Required"),
+			time: Yup.string().required("Required"),
+		}),
+		to: Yup.object().shape({
+			date: Yup.string().required("Required"),
+			time: Yup.string().required("Required"),
+		})
+	}),
+
+	privateMarks: Yup.string().required("Required"),
+	handlingCharges: Yup.string().required("Required"),
+	assuredFor: Yup.string().required("Required"),
+	receiptNumber: Yup.string().required("Required"),
+	receiptValidUpTo: Yup.string().required("Required"),
+	productOrigin: Yup.string().required("Required"),
+	wareHouseLocation: Yup.string().required("Required"),
+	receivedBy: Yup.string().required("Required"),
+	depositDate: Yup.string().required("Required"),
+	depositTime: Yup.string().required("Required"),
+	track_number: Yup.string().required("Required"),
 });
 
 const steps = [
-	"Shipper",
-	"Consignee",
-	"Collector",
-	"Departure",
-	"Arrival",
-	"Items",
-	"Events",
+	"Depositor",
+	"Owner",
+	"Product Detail",
+	"Acceptance",
+	"Others",
 	"Preview",
 ];
 
-const AddShipment = () => {
+const AddStorage = () => {
 	const [activeStep, setActiveStep] = useState(0);
 
 	const [alertMessage, setAlertMessage] = useState("");
 	const [alertSeverity, setAlertSeverity] = useState("info");
-	
+
 	const token = localStorage.getItem("token");
-	const { me } = useSelector((state) => state.user)
-	const dispatch = useDispatch()
+	const { me } = useSelector((state) => state.user);
+	const dispatch = useDispatch();
 
 	const handleNext = useCallback(() => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -178,9 +152,9 @@ const AddShipment = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	}, []);
 
-	const handleSubmit =  async (values, actions) => {
+	const handleSubmit = async (values, actions) => {
 		try {
-			const response = await dispatch(addShipment(me._id, token,  values));
+			const response = await dispatch(addStorage(me._id, token, values));
 			// extract success message
 			const { success, message } = response;
 
@@ -228,61 +202,46 @@ const AddShipment = () => {
 							)}
 
 							{activeStep === 0 && (
-								<ShipmentShippers
+								<Depositor
 									values={values}
 									setFieldValue={setFieldValue}
 								/>
 							)}
 
 							{activeStep === 1 && (
-								<ShipmentConsignee
+								<Owner
 									values={values}
 									setFieldValue={setFieldValue}
 								/>
 							)}
 
 							{activeStep === 2 && (
-								<ShipmentCollector
+								<ProductDetail
 									values={values}
 									setFieldValue={setFieldValue}
 								/>
 							)}
 
 							{activeStep === 3 && (
-								<ShippingDeparture
+								<Acceptance
 									values={values}
 									setFieldValue={setFieldValue}
 								/>
 							)}
 
 							{activeStep === 4 && (
-								<ShippingArrival
+								<Others
 									values={values}
 									setFieldValue={setFieldValue}
 								/>
 							)}
 
 							{activeStep === 5 && (
-								<ShippingItems
+								<Preview
 									values={values}
 									setFieldValue={setFieldValue}
 								/>
 							)}
-
-							{activeStep === 6 && (
-								<ShippingEvents
-									values={values}
-									setFieldValue={setFieldValue}
-								/>
-							)}
-
-							{activeStep === 7 && (
-								<ShipmentPreview
-									values={values}
-									setFieldValue={setFieldValue}
-								/>
-							)}
-
 							<Box
 								sx={{
 									display: "flex",
@@ -336,4 +295,4 @@ const AddShipment = () => {
 	);
 };
 
-export default AddShipment;
+export default AddStorage;

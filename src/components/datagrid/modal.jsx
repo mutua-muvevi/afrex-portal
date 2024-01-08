@@ -108,6 +108,7 @@ const ModalComponent = ({ selectedRow, open, onClose, title, actions }) => {
 								key={index}
 								onClick={() => action.onClick(selectedRow)}
 								endIcon={<Iconify icon={action.icon} />}
+								color={action.color ? action.color : "primary"}
 							>
 								{action.label}
 							</Button>

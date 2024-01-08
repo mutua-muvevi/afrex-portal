@@ -103,17 +103,12 @@ export const processDataForGrid = (data, nestedDataRenderer) => {
 				// Process nested objects and arrays
 				if (Array.isArray(item[key])) {
 					processedItem[key] = item[key]; // Assign the array directly
-				} else if (
+				} //else if it is object stringify it
+				else if (
 					typeof item[key] === "object" &&
 					item[key] !== null
 				) {
-					// For objects, extract the desired property based on availability
-					const objectValue = item[key];
-					processedItem[key] =
-						objectValue.fullname ||
-						objectValue.email ||
-						objectValue.title ||
-						Object.values(objectValue)[0];
+					processedItem[key] = JSON.stringify(item[key]);
 				}
 			}
 		});

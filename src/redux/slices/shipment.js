@@ -28,8 +28,8 @@ const initialState = {
 	editShipment: null,
 	editShipmentError: null,
 
-	convertShipmentToClient: null,
-	convertShipmentToClientError: null,
+	shipment: null,
+	shipmentError: null,
 };
 
 //the slice
@@ -105,12 +105,12 @@ const slice = createSlice({
 		//SET LEAD
 		setShipment(state, action) {
 			state.isLoading = false;
-			state.setShipment = action.payload;
+			state.shipment = action.payload;
 		},
 
 		setShipmentError(state, action) {
 			state.isLoading = false;
-			state.setShipmentError = action.payload;
+			state.shipmentError = action.payload;
 		},
 
 		// EDIT LEAD
@@ -204,50 +204,18 @@ export function deleteShipment(userID, token, shipmentID) {
 	};
 }
 
-//---------------------------delete many shipments--------------------------------
-export function deleteManyShipments(userID, token, shipmentIDs) {
-	return async (dispatch) => {
-		dispatch(slice.actions.startLoading());
-
-		try {
-			const response = await axios.delete(
-				`http://localhost:9900/api/shipment/${userID}/delete/many`,
-				{
-					headers: {
-						"Content-Type": "application/json",
-						"Authorization": token,
-					},
-					data: {
-						ids: shipmentIDs,
-					},
-				}
-			);
-			const data = await response.data;
-			dispatch(slice.actions.deleteManyShipments(data));
-			return data;
-
-		} catch (error) {
-			dispatch(slice.actions.deleteManyShipmentsError(error));
-			throw error.response;
-
-		} finally {
-			dispatch(stopLoading());
-		}
-	};
-}
 
 //---------------------------fetch all shipments--------------------------------
-export function fetchAllShipments(token, userID) {
+export function fetchAllShipments() {
 	return async (dispatch) => {
 		dispatch(slice.actions.startLoading());
 
 		try {
 			const response = await axios.get(
-				`http://localhost:9900/api/shipment/${userID}/fetch/all`,
+				`http://localhost:9900/api/shipment/fetch/all`,
 				{
 					headers: {
 						"Content-Type": "application/json",
-						"Authorization": token,
 					},
 				}
 			);
@@ -266,17 +234,16 @@ export function fetchAllShipments(token, userID) {
 }
 
 //---------------------------fetch single shipment--------------------------------
-export function fetchSingleShipment(userID, token, shipmentID) {
+export function fetchSingleShipment(shipmentID) {
 	return async (dispatch) => {
 		dispatch(slice.actions.startLoading());
 
 		try {
 			const response = await axios.get(
-				`http://localhost:9900/api/shipment/${userID}/fetch/single/${shipmentID}`,
+				`http://localhost:9900/api/shipment/fetch/single/${shipmentID}`,
 				{
 					headers: {
 						"Content-Type": "application/json",
-						"Authorization": token,
 					},
 				}
 			);
@@ -315,7 +282,7 @@ export function editShipment(userID, token, shipmentID, values) {
 	return async (dispatch) => {
 		dispatch(slice.actions.startLoading());
 
-		try {
+		try {console.log("Values", values)
 			const response = await axios.put(
 				`http://localhost:9900/api/shipment/${userID}/edit/${shipmentID}`,
 				values,

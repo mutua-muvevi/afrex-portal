@@ -21,7 +21,7 @@ import ShippingDeparture from "./departure";
 import ShippingArrival from "./arrival";
 import Iconify from "../../../../components/iconify";
 import { addShipment } from "../../../../redux/slices/shipment";
-import { useDispatch, useSelector } from "../../../../redux/store";
+import { useDispatch, useSelector } from "../../../../redux/store"
 
 const initialValues = {
 	shipper: {
@@ -32,7 +32,7 @@ const initialValues = {
 		email: "",
 	},
 
-	cosignee: {
+	consignee: {
 		fullname: "",
 		company: "",
 		address: "",
@@ -49,17 +49,21 @@ const initialValues = {
 	},
 
 	departure: {
-		address: "",
+		origin: "",
+		destination: "",
 		departure_date: "",
 		departure_time: "",
-		airport_code: "",
+		departure_flight: "",
+		departure_airline: "",
 	},
 
 	arrival: {
-		address: "",
+		origin: "",
+		destination: "",
 		arrival_date: "",
 		arrival_time: "",
-		airport_code: "",
+		arrival_flight: "",
+		arrival_airline: "",
 	},
 
 	items: [
@@ -80,6 +84,8 @@ const initialValues = {
 			description: "",
 		},
 	],
+
+	track_number: ""
 };
 
 const validationSchema = Yup.object().shape({
@@ -91,7 +97,7 @@ const validationSchema = Yup.object().shape({
 		email: Yup.string().email("Invalid email").required("Required"),
 	}),
 
-	cosignee: Yup.object().shape({
+	consignee: Yup.object().shape({
 		fullname: Yup.string().required("Required"),
 		company: Yup.string().required("Required"),
 		address: Yup.string().required("Required"),
@@ -139,6 +145,8 @@ const validationSchema = Yup.object().shape({
 			description: Yup.string().required("Required"),
 		})
 	),
+
+	track_number: Yup.string().required()
 });
 
 const steps = [
@@ -159,8 +167,8 @@ const AddShipment = () => {
 	const [alertSeverity, setAlertSeverity] = useState("info");
 	
 	const token = localStorage.getItem("token");
-	const { me } = useSelector((state) => state.user);
-	const dispatch = useDispatch();
+	const { me } = useSelector((state) => state.user)
+	const dispatch = useDispatch()
 
 	const handleNext = useCallback(() => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -170,13 +178,12 @@ const AddShipment = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	}, []);
 
-	const handleSubmit = async (values, actions) => {
+	const handleSubmit =  async (values, actions) => {
+		console.log(values)
 		try {
-			console.log(values);
-			const response = await dispatch(addShipment(me._id, token, values));
+			const response = await dispatch(addShipment(me._id, token,  values));
 			// extract success message
 			const { success, message } = response;
-			console.log("respobn", response)
 
 			// Set the alert message from the response and determine severity
 			setAlertMessage(message);
@@ -192,8 +199,6 @@ const AddShipment = () => {
 			setAlertMessage(error.error || "An error occurred.");
 			setAlertSeverity("error");
 		}
-
-		actions.setSubmitting(false);
 	};
 
 	return (
@@ -303,9 +308,9 @@ const AddShipment = () => {
 									// 'Submit' button on the final step
 									<Button
 										variant="contained"
-										type="submit"
 										disabled={isSubmitting}
 										endIcon={<Iconify icon="mdi:check" />}
+										onClick={() => handleSubmit(values)}
 									>
 										Submit
 									</Button>

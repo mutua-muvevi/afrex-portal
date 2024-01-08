@@ -4,6 +4,7 @@ import { setShipment } from "../../../../redux/slices/shipment";
 import { useSelector, useDispatch } from "../../../../redux/store";
 import ModalComponent from "../../../../components/modal/modal";
 import EditShipment from "../edit/edit";
+import DeleteShipment from "../delete/delete";
 
 const ShipmentTable = () => {
 	const [openNew, setOpenNew] = useState(false);
@@ -51,6 +52,18 @@ const ShipmentTable = () => {
 			>
 				<EditShipment onClose={() => setOpenEdit(false)}/>
 			</ModalComponent>
+
+			<ModalComponent
+				open={openDelete}
+				onClose={() => setOpenEdit(false)}
+				title="Edit Shipment"
+				maxWidth="sm"
+				height={250}
+			>
+				<DeleteShipment onClose={() => setOpenDelete(false)}/>
+			</ModalComponent>
+
+			
 		</>
 	);
 };

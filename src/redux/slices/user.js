@@ -164,7 +164,7 @@ export function fetchMe(token) {
 		dispatch(slice.actions.startLoading());
 		
 		try {
-			const response = await axios.get("http://localhost:8100/api/user/fetch/me", {
+			const response = await axios.get("http://localhost:9900/api/user/fetch/me", {
 				headers: {
 					Authorization: token,
 				},
@@ -186,7 +186,7 @@ export function register(values){
 
 		try {
 			const response = await axios.post(
-				"http://localhost:8100/api/user/register",
+				"http://localhost:9900/api/user/register",
 				values,
 				{
 					headers: {
@@ -209,7 +209,7 @@ export function postOTPCode(userID, values, token){
 
 		try {
 			const response = axios.post(
-				`http://localhost:8100/api/user/${userID}/otp`,
+				`http://localhost:9900/api/user/${userID}/otp`,
 				values,
 				{
 					headers: {
@@ -237,7 +237,7 @@ export function resendOTPCode(userID, token){
 
 		try {
 			const response = await axios.get(
-				`http://localhost:8100/api/user/${userID}/otp/resend`,
+				`http://localhost:9900/api/user/${userID}/otp/resend`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -264,7 +264,7 @@ export function loginUser(values){
 
 		try {
 			const response = await axios.post(
-				"http://localhost:8100/api/user/login",
+				"http://localhost:9900/api/user/login",
 				values,
 				{
 					headers: {
@@ -291,7 +291,7 @@ export function resetPassword(values){
 
 		try {
 			const response = await axios.post(
-				"http://localhost:8100/api/user/reset/password",
+				"http://localhost:9900/api/user/reset/password",
 				values,
 				{
 					headers: {
@@ -318,7 +318,7 @@ export function newPassword(values, resetToken){
 
 		try {
 			const response = await axios.post(
-				`http://localhost:8100/api/user/new/password/${resetToken}`,
+				`http://localhost:9900/api/user/new/password/${resetToken}`,
 				values,
 				{
 					headers: {
@@ -345,7 +345,7 @@ export function editUser(values, token, userID){
 
 		try {
 			const response = await axios.put(
-				`http://localhost:8100/api/user/edit/me/${userID}`,
+				`http://localhost:9900/api/user/edit/me/${userID}`,
 				values,
 				{
 					headers: {

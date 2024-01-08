@@ -17,7 +17,6 @@ const EditLead = ({ onClose }) => {
 	const [alertSeverity, setAlertSeverity] = useState("info");
 
 	const { setLead: lead } = useSelector((state) => state.leads);
-	const { services: {data : AllServices} } = useSelector((state) => state.services);
 	const { me } = useSelector((state) => state.user);
 
 	const token = localStorage.getItem("token");
@@ -70,13 +69,37 @@ const EditLead = ({ onClose }) => {
 		{ name: "Other", label: "Other" },
 	];
 
-	//service options
-	const serviceOptions = AllServices.map((service) => {
-		return {
-			name: service._id,
-			label: service.name,
-		};
-	});
+	//services options
+	const serviceOptions = [
+		{
+			name: "business registration",
+			label: "Business Registration"
+		},
+		{
+			name: "company registration",
+			label: "Company Registration"
+		},
+		{
+			name: "professional expertise",
+			label: "Professional Expertise"
+		},
+		{
+			name: "administrative and business support",
+			label: "Administrative and Business Support"
+		},
+		{
+			name: "connection to business opportunity",
+			label: "Connection to Business Opportunity"
+		},
+		{
+			name: "business support services",
+			label: "Business Support Services"
+		},
+		{
+			name: "air transport services",
+			label: "Air Transport Services"
+		},
+	];
 
 	const handleSubmit = async (values, actions) => {
 		try {

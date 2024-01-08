@@ -15,18 +15,7 @@ import { useDispatch } from "../redux/store";
 
 //fetching initial data
 import { fetchMe } from "../redux/slices/user";
-import { fetchAllReservations } from "../redux/slices/reservations";
-import { fetchAllServices } from "../redux/slices/services";
-import { fetchAllBlogs } from "../redux/slices/blogs";
-import { fetchAllAnnouncements } from "../redux/slices/announcements";
 import { fetchAllLeads } from "../redux/slices/leads";
-import { fetchAllClients } from "../redux/slices/clients";
-import { fetchAllTerms } from "../redux/slices/terms";
-import { fetchAllManuals } from "../redux/slices/manuals";
-import { fetchAllCurriculums } from "../redux/slices/curriculums";
-import { fetchAllVoicemails } from "../redux/slices/voicemails";
-import { fetchAllEvents } from "../redux/slices/events";
-import { fetchHomepage } from "../redux/slices/homepage";
 
 // ----------------------------------------------------------------------
 
@@ -108,41 +97,8 @@ export function AuthProvider({ children }) {
 
 				const user = response.data.data;
 
-				//fetching all reservations
-				await reduxDispatch(fetchAllReservations(token, user._id));
-
-				//fetching all services
-				await reduxDispatch(fetchAllServices());
-
-				// fetch all blogs
-				await reduxDispatch(fetchAllBlogs());
-
-				//fetch all announcements
-				await reduxDispatch(fetchAllAnnouncements())
-
 				//await fetch all leads
 				await reduxDispatch(fetchAllLeads(token, user._id));
-
-				//fetch all clients
-				await reduxDispatch(fetchAllClients(token, user._id));
-
-				//fetch all terms
-				await reduxDispatch(fetchAllTerms());
-
-				//fetch all manuals
-				await reduxDispatch(fetchAllManuals(user._id, token));
-
-				//fetch all curriculums
-				await reduxDispatch(fetchAllCurriculums(user._id, token));
-
-				//fetch all voicemails
-				await reduxDispatch(fetchAllVoicemails(user._id, token));
-
-				//fetch all events
-				await reduxDispatch(fetchAllEvents());
-
-				//fetch homepage
-				// await reduxDispatch(fetchHomepage());
 
 				dispatch({
 					type: "INITIAL",

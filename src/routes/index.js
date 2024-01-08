@@ -32,10 +32,6 @@ import {
 	OTPPage,
 	ScrollPlaybround,
 
-	Storage,
-	Tools,
-	Announcements,
-
 	//-----------account----------------
 	AccountOverview,
 	AccountSettings,
@@ -43,41 +39,11 @@ import {
 
 	//-----------home-------------------
 	DashboardMain,
-
-	//-----------social----------------
-	FaceBook,
-	Instagram,
-	TikTok,
-
-	//-----------content----------------
-	Bookings,
-	WebsiteHomepage,
-	WebsiteAbout,
-	WebsitePricing,
 	Leads,
-	Clients,
-	Services,
-	WebsiteServices,
-	LandingOverview,
-	Competition,
-	Weather,
-	SEO,
-	Jumps,
-	Events,
-	Gears,
-	Blogs,
-	Terms,
-	Manuals,
-	Curriculums,
-	Voicemails,
-	EventsMain,
-	WebsitePages,
 } from "./elements";
 
 import CompactLayout from "../layout/compact/compact-layout";
 import TimelinePlayground from "../pages/playground/timeline";
-import WebsiteOverview from "../pages/dashboard/website/overview/overview";
-import LandingPage from "../pages/dashboard/landing/page/landing";
 
 // ----------------------------------------------------------------------
 export default function Router() {
@@ -155,89 +121,7 @@ export default function Router() {
 					],
 				},
 
-				{ path: "storage", element: <Storage /> },
-
-				{ path: "bookings", element: <Bookings /> },
-
-				{ path: "services", element: <Services /> },
-
-				{ path: "clients", element: <Clients /> },
-
 				{ path: "leads", element: <Leads /> },
-
-				{ path: "tools", element: <Tools /> },
-
-				{ path: "terms", element: <Terms /> },
-
-				{ path: "manuals", element: <Manuals /> },
-
-				{ path: "curriculums", element: <Curriculums /> },
-
-				{ path: "voicemails", element: <Voicemails /> },
-
-				{ path: "events", element: <EventsMain /> },
-
-				//the tools
-				{ path: "competition", element: <Competition/> },
-				{ path: "weather", element: <Weather/> },
-				{ path: "seo", element: <SEO/> },
-				{ path: "jumps", element: <Jumps/> },
-				{ path: "events", element: <Events/> },
-				{ path: "gears", element: <Gears/> },
-
-				{ path: "announcements", element: <Announcements/> },
-
-
-				{
-					path: "social",
-					children: [
-						{
-							element: (
-								<Navigate to="/admin/social/facebook" replace/>
-							),
-							index: true
-						},
-						{ path: "facebook", element: <FaceBook /> },
-						{ path: "instagram", element: <Instagram /> },
-						{ path: "tiktok", element: <TikTok /> },
-					]
-				},
-
-				{
-					path: "website",
-					children: [
-						{
-							element: (
-								<Navigate to="/admin/website/overview" replace/>
-							),
-							index: true
-						},
-						{ path: "overview", element: <WebsiteOverview /> },
-						{ path: "homepage", element: <WebsiteHomepage /> },
-						{ path: "about", element: <WebsiteAbout /> },
-						{ path: "pricing", element: <WebsitePricing /> },
-						{ path: "services", element: <WebsiteServices /> },
-						{ path: "pages", element: <WebsitePages /> },
-					]
-				},
-
-				{
-					path: "landing",
-					children: [
-						{
-							element: (
-								<Navigate to="/admin/landing/overview" replace/>
-							),
-							index: true
-						},
-						{ path: "overview", element: <LandingOverview /> },
-						{ path: "landing", element: <LandingPage /> },
-					]
-				},
-
-				{ path: "blogs", element: <Blogs/> },
-				{ path: "services", element: <Services/> },
-
 			],
 		},
 

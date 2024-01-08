@@ -152,7 +152,7 @@ export function addLead(values) {
 
 		try {
 			const response = await axios.post(
-				`http://localhost:8100/api/lead/post`,
+				`http://localhost:9900/api/lead/post`,
 				values,
 				{
 					headers: {
@@ -181,7 +181,7 @@ export function deleteLead(userID, token, leadID) {
 
 		try {
 			const response = await axios.delete(
-				`http://localhost:8100/api/lead/${userID}/delete/single/${leadID}`,
+				`http://localhost:9900/api/lead/${userID}/delete/single/${leadID}`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -210,7 +210,7 @@ export function deleteManyLeads(userID, token, leadIDs) {
 
 		try {
 			const response = await axios.delete(
-				`http://localhost:8100/api/lead/${userID}/delete/many`,
+				`http://localhost:9900/api/lead/${userID}/delete/many`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -242,7 +242,7 @@ export function fetchAllLeads(token, userID) {
 
 		try {
 			const response = await axios.get(
-				`http://localhost:8100/api/lead/${userID}/fetch/all`,
+				`http://localhost:9900/api/lead/${userID}/fetch/all`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -271,7 +271,7 @@ export function fetchSingleLead(userID, token, leadID) {
 
 		try {
 			const response = await axios.get(
-				`http://localhost:8100/api/lead/${userID}/fetch/single/${leadID}`,
+				`http://localhost:9900/api/lead/${userID}/fetch/single/${leadID}`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -316,7 +316,7 @@ export function editLead(userID, token, leadID, values) {
 
 		try {
 			const response = await axios.put(
-				`http://localhost:8100/api/lead/${userID}/edit/${leadID}`,
+				`http://localhost:9900/api/lead/${userID}/edit/${leadID}`,
 				values,
 				{
 					headers: {
@@ -346,7 +346,7 @@ export function convertLeadToClient(userID, token, leadID) {
 		
 		try {
 			const response = await axios.get(
-				`http://localhost:8100/api/client/${userID}/convert/lead/${leadID}`,
+				`http://localhost:9900/api/client/${userID}/convert/lead/${leadID}`,
 				{
 					headers: {
 						"Authorization": token,

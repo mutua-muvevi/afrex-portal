@@ -4,7 +4,7 @@ import * as Yup from "yup";
 
 import Textfield from "../../../../components/form/textfield/textfield";
 import Iconify from "../../../../components/iconify";
-import { useDispatch, useSelector } from "../../../../redux/store";
+import { useDispatch } from "../../../../redux/store";
 import { addLead } from "../../../../redux/slices/leads";
 import { Alert, Stack } from "@mui/material";
 import { useState } from "react";
@@ -63,17 +63,40 @@ const NewLead = ({ onClose }) => {
 	const [alertMessage, setAlertMessage] = useState("");
 	const [alertSeverity, setAlertSeverity] = useState("info");
 
-	const { services: {data : AllServices} } = useSelector((state) => state.services);
-
 	const dispatch = useDispatch();
 
 	//services options
-	const serviceOptions = AllServices.map((service) => {
-		return {
-			name: service._id,
-			label: service.name,
-		};
-	});
+	const serviceOptions = [
+		{
+			name: "business registration",
+			label: "Business Registration"
+		},
+		{
+			name: "company registration",
+			label: "Company Registration"
+		},
+		{
+			name: "professional expertise",
+			label: "Professional Expertise"
+		},
+		{
+			name: "administrative and business support",
+			label: "Administrative and Business Support"
+		},
+		{
+			name: "connection to business opportunity",
+			label: "Connection to Business Opportunity"
+		},
+		{
+			name: "business support services",
+			label: "Business Support Services"
+		},
+		{
+			name: "air transport services",
+			label: "Air Transport Services"
+		},
+	];
+	
 
 	const handleSubmit = async (values, actions) => {
 		try {

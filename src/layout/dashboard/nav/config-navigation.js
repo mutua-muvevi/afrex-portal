@@ -18,12 +18,6 @@ const navConfig = [
 	{
 		subheader: "main",
 		items: [
-			//main
-			{
-				title: "home",
-				path: PATH_DASHBOARD.general.home,
-				icon: ICONS.home,
-			},
 
 			// leads
 			{

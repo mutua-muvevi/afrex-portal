@@ -179,7 +179,6 @@ const AddShipment = () => {
 	}, []);
 
 	const handleSubmit =  async (values, actions) => {
-		console.log(values)
 		try {
 			const response = await dispatch(addShipment(me._id, token,  values));
 			// extract success message

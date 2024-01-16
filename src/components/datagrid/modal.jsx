@@ -61,11 +61,11 @@ const ModalComponent = ({ selectedRow, open, onClose, title, actions }) => {
 							Object.entries(selectedRow).map(([key, value]) => (
 								<Stack
 									key={key}
-									direction={{ xs: "column", lg: "row" }}
-									spacing={3}
+									direction="column"
+									spacing={1.5}
 								>
 									<Typography
-										variant="subtitle2"
+										variant="h6"
 										sx={{
 											color: theme.palette.primary.main,
 											marginBottom: { xs: 1, lg: 0 },
@@ -76,18 +76,53 @@ const ModalComponent = ({ selectedRow, open, onClose, title, actions }) => {
 									{Array.isArray(value) ? (
 										renderArrayTable(value)
 									) : (
-										<Typography variant="subtitle2">
-											<span
-												style={{
-													color: theme.palette.primary
-														.main,
-												}}
-											>
-												: &nbsp;
-											</span>{" "}
-											{sentenceCase(value.toString())}
+										<Typography variant="subtitle1">
+											{ typeof value === "string" ? sentenceCase(value.toString()) : null}
 										</Typography>
 									)}
+
+									{/* if the value is an object and if it has nested properties render them in terms of title subtitle */}
+									{typeof value === "object" &&
+										Object.entries(value).map(
+											([key, value]) => (
+												<Stack
+													key={key}
+													direction="row"
+													spacing={3}
+												>
+													<Typography
+														variant="subtitle2"
+														sx={{
+															color: theme.palette
+																.primary.main,
+															marginBottom: {
+																xs: 1,
+																lg: 0,
+															},
+														}}
+													>
+														{key
+															? sentenceCase(key)
+															: "No data"}
+													</Typography>
+													<Typography variant="subtitle2">
+														<span
+															style={{
+																color: theme
+																	.palette
+																	.primary
+																	.main,
+															}}
+														>
+															: &nbsp;
+														</span>{" "}
+														{sentenceCase(
+															value.toString()
+														)}
+													</Typography>
+												</Stack>
+											)
+										)}
 								</Stack>
 							))}
 					</Stack>
@@ -102,8 +137,8 @@ const ModalComponent = ({ selectedRow, open, onClose, title, actions }) => {
 					>
 						Close
 					</Button>
-					{
-						actions && actions.map((action, index) => (
+					{actions &&
+						actions.map((action, index) => (
 							<Button
 								key={index}
 								onClick={() => action.onClick(selectedRow)}
@@ -112,8 +147,7 @@ const ModalComponent = ({ selectedRow, open, onClose, title, actions }) => {
 							>
 								{action.label}
 							</Button>
-						))
-					}
+						))}
 				</ButtonGroup>
 			</DialogActions>
 		</Dialog>

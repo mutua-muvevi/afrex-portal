@@ -18,6 +18,8 @@ import { fetchMe } from "../redux/slices/user";
 import { fetchAllLeads } from "../redux/slices/leads";
 import { fetchAllShipments } from "../redux/slices/shipment";
 import { fetchAllStorages } from "../redux/slices/storage";
+import { fetchAllEmails } from "../redux/slices/emails";
+import { fetchAllFlights } from "../redux/slices/flights";
 
 // ----------------------------------------------------------------------
 
@@ -107,6 +109,12 @@ export function AuthProvider({ children }) {
 
 				//fecth all storage
 				await reduxDispatch(fetchAllStorages());
+
+				//fetch all emails
+				await reduxDispatch(fetchAllEmails(user._id, token));
+
+				//fetch all flights
+				await reduxDispatch(fetchAllFlights(user._id, token));
 
 				dispatch({
 					type: "INITIAL",

@@ -42,6 +42,7 @@ import {
 	Leads,
 	Shipment,
 	Storage,
+	Emails,
 } from "./elements";
 
 import CompactLayout from "../layout/compact/compact-layout";
@@ -129,7 +130,9 @@ export default function Router() {
 
 				{ path: "storage", element: <Storage/> },
 
-				{ path: "*", element: <Navigate to="/404" replace /> },
+				{ path: "emails", element: <Emails/> },
+
+				// { path: "*", element: <Navigate to="/404" replace /> },
 			],
 		},
 

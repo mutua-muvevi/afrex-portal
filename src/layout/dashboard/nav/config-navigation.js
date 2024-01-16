@@ -10,6 +10,7 @@ const ICONS = {
 	leads: "mdi:leads",
 	shipment: "mdi:truck-delivery",
 	storage: "mdi:warehouse",
+	email: "dashicons:email-alt"
 };
 
 const navConfig = [
@@ -33,11 +34,18 @@ const navConfig = [
 				icon: ICONS.shipment,
 			},
 
-			// leads
+			// storage
 			{
 				title: "storage",
 				path: PATH_DASHBOARD.general.storage,
 				icon: ICONS.storage,
+			},
+
+			// emails
+			{
+				title: "emails",
+				path: PATH_DASHBOARD.general.emails,
+				icon: ICONS.email,
 			},
 		],
 	},

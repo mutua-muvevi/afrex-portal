@@ -157,7 +157,6 @@ const EditShipment = () => {
 	};
 
 	const handleSubmit = async (values, actions) => {
-		console.log(values)
 		try {
 			const response = await dispatch(editShipment(me._id, token, shipment._id, values));
 			// extract success message

@@ -116,7 +116,6 @@ const NewFlight = () => {
 
 	const handleSubmit = async (values) => {
 		try {
-			console.log("Values: ", values);
 			const response = await dispatch(addFlight(me._id, token, values));
 			// extract success message
 			const { success, message } = response;

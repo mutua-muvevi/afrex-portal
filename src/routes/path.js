@@ -55,7 +55,10 @@ export const PATH_DASHBOARD = {
 		storage: path(ROOTS_DASHBOARD, "/storage"),
 
 		//emails
-		emails: path(ROOTS_DASHBOARD, "/emails")
+		emails: path(ROOTS_DASHBOARD, "/emails"),
+
+		//flights
+		flights: path(ROOTS_DASHBOARD, "/flights"),
 	},
 
 

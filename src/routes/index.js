@@ -43,6 +43,7 @@ import {
 	Shipment,
 	Storage,
 	Emails,
+	Flights,
 } from "./elements";
 
 import CompactLayout from "../layout/compact/compact-layout";
@@ -131,6 +132,8 @@ export default function Router() {
 				{ path: "storage", element: <Storage/> },
 
 				{ path: "emails", element: <Emails/> },
+
+				{ path: "flights", element: <Flights/> },
 
 				// { path: "*", element: <Navigate to="/404" replace /> },
 			],

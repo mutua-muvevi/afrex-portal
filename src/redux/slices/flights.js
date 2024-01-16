@@ -92,6 +92,17 @@ const slice = createSlice({
 			state.isLoading = false;
 			state.editFlightError = action.payload;
 		},
+
+		//SET FLIGHT
+		setFlight(state, action) {
+			state.isLoading = false;
+			state.flight = action.payload;
+		},
+
+		setFlightError(state, action) {
+			state.isLoading = false;
+			state.flightError = action.payload;
+		},
 	},
 });
 
@@ -217,4 +228,21 @@ export function editFlight(userID, token, flightID, values) {
 			dispatch(stopLoading());
 		}
 	};
+}
+
+
+//---------------------------set flight--------------------------------
+export function setFlight(flight) {
+	return async (dispatch) => {
+		dispatch(slice.actions.startLoading());
+		try {
+			dispatch(slice.actions.setFlight(flight));
+			return flight;
+		} catch (error) {
+			dispatch(slice.actions.setFlightError(error));
+			throw error;
+		} finally {
+			dispatch(slice.actions.stopLoading());
+		}
+	}
 }

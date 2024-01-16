@@ -81,3 +81,6 @@ export const Leads = Loadable(lazy(() => import("../pages/dashboard/leads/leads"
 export const Shipment = Loadable(lazy(() => import("../pages/dashboard/shipment/shipment")));
 export const Storage = Loadable(lazy(() => import("../pages/dashboard/storage/storage")));
 export const Emails = Loadable(lazy(() => import("../pages/dashboard/emails/emails")))
+
+//flights
+export const Flights = Loadable(lazy(() => import("../pages/dashboard/flights/flights")));

@@ -4,7 +4,6 @@ import { Link as RouterLink } from "react-router-dom";
 // @mui
 import { Box, Link, useTheme } from "@mui/material";
 
-const logoUrl = "https://res.cloudinary.com/dqweh6zte/image/upload/v1679650180/skydive%20rhino/images/skydive_rhino_kenya_logo_trnkqy.png"
 // ----------------------------------------------------------------------
 
 const Logo = forwardRef(({ disabledLink = false, width, height, sx, ...other }, ref) => {

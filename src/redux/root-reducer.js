@@ -8,6 +8,8 @@ import UserReducer from "./slices/user";
 import LeadsReducer from "./slices/leads";
 import ShipmentReducer from "./slices/shipment";
 import StorageReducer from "./slices/storage";
+import EmailsReducer from "./slices/emails";
+import FlightReducer from "./slices/flights";
 
 // ----------------------------------------------------------------------
 
@@ -17,7 +19,9 @@ const config = {
 	whitelist: [
 		"user",
 		"leads",
-		"shipment"
+		"shipment",
+		"emails",
+		"flight",
 	],
 	blacklist: [],
 };
@@ -26,7 +30,9 @@ export const rootReducer = combineReducers({
 	user: UserReducer,
 	leads: LeadsReducer,
 	shipment: ShipmentReducer,
-	storage: StorageReducer
+	storage: StorageReducer,
+	emails: EmailsReducer,
+	flight: FlightReducer,
 });
 
 const persistedReducer = persistReducer(config, rootReducer);

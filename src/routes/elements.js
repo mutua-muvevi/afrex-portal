@@ -50,18 +50,6 @@ export const MaintenancePage = Loadable(
 	lazy(() => import("../pages/maintenance"))
 );
 
-//PLAYGROUND
-export const PlaygroundForms = Loadable(lazy(() => import("../pages/playground/forms")));
-export const DatagridPlayground = Loadable(lazy(() => import("../pages/playground/datagrid")));
-export const TimelinePlayground = Loadable(lazy(() => import("../pages/playground/timeline")));
-export const CalendarPlayground = Loadable(lazy(() => import("../pages/playground/calendar")));
-export const ChartPlayground = Loadable(lazy(() => import("../pages/playground/chart")));
-export const AdvancedChartPlayGround = Loadable(lazy(() => import("../pages/playground/advanced-chart")));
-export const ChatPlayGround = Loadable(lazy(() => import("../pages/playground/chat")));
-export const KanbanPlayGround = Loadable(lazy(() => import("../pages/playground/kanban")));
-export const OrgPlayGround = Loadable(lazy(() => import("../pages/playground/organization")));
-export const ScrollPlaybround = Loadable(lazy(() => import("../pages/playground/scrollbar")));
-
 
 // DASHBOARD
 //-----------------main-----------------

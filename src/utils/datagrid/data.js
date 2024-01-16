@@ -43,6 +43,7 @@ export const renderNestedTable = (nestedArray) => {
 export const processDataForGrid = (data, nestedDataRenderer) => {
 	const columns = [];
 	const rows = [];
+	let itemData = {}
 
 	// Define a function to pluralize the column name if needed
 	const pluralize = (count, singular) => {
@@ -51,6 +52,8 @@ export const processDataForGrid = (data, nestedDataRenderer) => {
 
 	// Process each data item
 	data.forEach((item, index) => {
+		itemData = item ;
+
 		const processedItem = {
 			...Object.keys(item).reduce((acc, key) => {
 				if (
@@ -103,12 +106,12 @@ export const processDataForGrid = (data, nestedDataRenderer) => {
 				// Process nested objects and arrays
 				if (Array.isArray(item[key])) {
 					processedItem[key] = item[key]; // Assign the array directly
-				} //else if it is object stringify it
-				else if (
+				} else if (
 					typeof item[key] === "object" &&
 					item[key] !== null
 				) {
-					processedItem[key] = JSON.stringify(item[key]);
+					// Display only the name of the object
+					processedItem[key] = key || "";
 				}
 			}
 		});
@@ -116,5 +119,5 @@ export const processDataForGrid = (data, nestedDataRenderer) => {
 		rows.push(processedItem);
 	});
 
-	return { rows, columns };
+	return { rows, columns, itemData };
 };

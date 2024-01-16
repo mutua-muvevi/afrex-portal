@@ -91,11 +91,12 @@ export default function DataGridCustom({
 		return <span>{value}</span>;
 	};
 
-	const { rows, columns } = processDataForGrid(data, nestedDataRenderer);
+	const { rows, columns, itemData } = processDataForGrid(data, nestedDataRenderer);
 
 	// Function to handle row click
-	const handleRowClick = (params) => {
-		setSelectedRow(params.row); // Set the selected row data
+	const handleRowClick = () => {
+		console.log("itemData >>>>??????????", itemData)
+		setSelectedRow(itemData); // Set the selected row data
 	};
 
 	if (columns.length > 0) {

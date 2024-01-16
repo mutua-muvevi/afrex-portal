@@ -20,17 +20,7 @@ import {
 	ComingSoonPage,
 	MaintenancePage,
 
-	//playground
-	PlaygroundForms,
-	DatagridPlayground,
-	CalendarPlayground,
-	ChartPlayground,
-	AdvancedChartPlayGround,
-	ChatPlayGround,
-	KanbanPlayGround,
-	OrgPlayGround,
 	OTPPage,
-	ScrollPlaybround,
 
 	//-----------account----------------
 	AccountOverview,
@@ -47,7 +37,6 @@ import {
 } from "./elements";
 
 import CompactLayout from "../layout/compact/compact-layout";
-import TimelinePlayground from "../pages/playground/timeline";
 
 // ----------------------------------------------------------------------
 export default function Router() {
@@ -135,9 +124,11 @@ export default function Router() {
 
 				{ path: "flights", element: <Flights/> },
 
+				
 				// { path: "*", element: <Navigate to="/404" replace /> },
 			],
 		},
+		{ path: "/", element: <Navigate to="/admin/home" replace /> },
 
 		//other ----------------------------------
 		{
@@ -151,31 +142,5 @@ export default function Router() {
 			],
 		},
 		{ path: "*", element: <Navigate to="/404" replace /> },
-
-		//playground -----------------------------
-		{ path: "form-playground", element: <PlaygroundForms /> },
-		{ path: "datagrid-playground", element: <DatagridPlayground /> },
-		{ path: "timeline-playground", element: <TimelinePlayground /> },
-		{ path: "calendar-playground", element: <CalendarPlayground /> },
-		{
-			path: "chart-playground",
-			element: <ChartPlayground />,
-		},
-		{
-			path: "advanced-chart-playground",
-			element: <AdvancedChartPlayGround />,
-		},
-		{
-			path: "chat-playground",
-			element: <ChatPlayGround />,
-			children: [
-				{ element: <ChartPlayground />, index: true },
-				{ path: "new", element: <ChartPlayground /> },
-				{ path: ":conversationKey", element: <ChartPlayground /> },
-			],
-		},
-		{ path: "kanban-playground", element: <KanbanPlayGround /> },
-		{ path: "org-chart-playground", element: <OrgPlayGround /> },
-		{ path: "scrollbar-playground", element: <ScrollPlaybround /> },
 	]);
 }

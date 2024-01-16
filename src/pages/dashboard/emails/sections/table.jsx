@@ -35,7 +35,7 @@ const EmailTable = () => {
 
 			<ModalComponent
 				open={openDelete}
-				onClose={() => setOpenEdit(false)}
+				onClose={() => setOpenDelete(false)}
 				title="Edit Email"
 				maxWidth="sm"
 				height={250}

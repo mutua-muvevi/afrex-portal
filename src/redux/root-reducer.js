@@ -21,7 +21,7 @@ const config = {
 		"leads",
 		"shipment",
 		"emails",
-		"flight",
+		"flights",
 	],
 	blacklist: [],
 };
@@ -32,7 +32,7 @@ export const rootReducer = combineReducers({
 	shipment: ShipmentReducer,
 	storage: StorageReducer,
 	emails: EmailsReducer,
-	flight: FlightReducer,
+	flights: FlightReducer,
 });
 
 const persistedReducer = persistReducer(config, rootReducer);

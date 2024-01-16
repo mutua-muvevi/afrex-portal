@@ -18,6 +18,17 @@ const EmailsMain = () => {
 
 				<EmailsTable/>
 			</Stack>
+
+			<ModalComponent
+				open={openAddEmail}
+				setOpen={setOpenAddEmail}
+				title="Add Email"
+				height="70vh"
+				onClose={() => setOpenAddEmail(false)}
+				maxWidth="xl"
+			>
+				{/* <AddEmail onClose={() => setOpenAddEmail(false)} /> */}
+			</ModalComponent>
 		</>
 	);
 };

@@ -1,16 +1,17 @@
 import { useState } from "react";
 import DataGridCustom from "../../../../components/datagrid/custom";
-import { setShipment } from "../../../../redux/slices/shipment";
+import { setFlight } from "../../../../redux/slices/flights";
 import { useSelector, useDispatch } from "../../../../redux/store";
 import ModalComponent from "../../../../components/modal/modal";
-import EditShipment from "../edit/edit";
-import DeleteShipment from "../delete/delete";
+// import EditFlight from "../edit/edit";
+import DeleteFlight from "../delete/delete";
+import EditFlight from "../edit/edit";
 
-const ShipmentTable = () => {
+const FlightTable = () => {
 	const [openEdit, setOpenEdit] = useState(false);
 	const [openDelete, setOpenDelete] = useState(false);
 	const dispatch = useDispatch();
-	const { shipments: { data: allShipment } } = useSelector((state) => state.shipment);
+	const { flights: { data: allFlight } } = useSelector((state) => state.flights);
 
 	const modalActions = [
 		{
@@ -18,7 +19,7 @@ const ShipmentTable = () => {
 			action: "edit",
 			icon: "ic:baseline-edit",
 			onClick: (rowData) => {
-				dispatch(setShipment(rowData))
+				dispatch(setFlight(rowData))
 				setOpenEdit(true);
 			}
 		},
@@ -28,7 +29,7 @@ const ShipmentTable = () => {
 			icon: "ic:baseline-delete",
 			color:"error",
 			onClick: (rowData) => {
-				dispatch(setShipment(rowData))
+				dispatch(setFlight(rowData))
 				setOpenDelete(true);
 			}
 		},
@@ -37,34 +38,35 @@ const ShipmentTable = () => {
 	return (
 		<>
 			<DataGridCustom
-				data={allShipment}
-				title="Shipment List"
-				modalTitle="Shipment"
+				data={allFlight}
+				title="Flight List"
+				modalTitle="Flight"
 				modalActions={modalActions}
 			/>
 
 			<ModalComponent
 				open={openEdit}
-				onClose={() => setOpenEdit(false)}
-				title="EDit Shipment"
-				height="70vh"
-			>
-				<EditShipment onClose={() => setOpenEdit(false)}/>
-			</ModalComponent>
-
-			<ModalComponent
-				open={openDelete}
-				onClose={() => setOpenEdit(false)}
-				title="Edit Shipment"
+				onClose={() => setOpenDelete(false)}
+				title="Edit Flight"
 				maxWidth="sm"
 				height={250}
 			>
-				<DeleteShipment onClose={() => setOpenDelete(false)}/>
-			</ModalComponent>
+				<EditFlight onClose={() => setOpenDelete(false)}/>
+			</ModalComponent> 
+
+			<ModalComponent
+				open={openDelete}
+				onClose={() => setOpenDelete(false)}
+				title="Delete Flight"
+				maxWidth="sm"
+				height={250}
+			>
+				<DeleteFlight onClose={() => setOpenDelete(false)}/>
+			</ModalComponent> 
 
 			
 		</>
 	);
 };
 
-export default ShipmentTable;
+export default FlightTable;

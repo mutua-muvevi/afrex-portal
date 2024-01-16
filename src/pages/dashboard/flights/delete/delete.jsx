@@ -10,35 +10,35 @@ import {
 import PropTypes from "prop-types";
 import Iconify from "../../../../components/iconify";
 import { useDispatch, useSelector } from "../../../../redux/store";
-import { deleteLead } from "../../../../redux/slices/leads";
+import { deleteFlight } from "../../../../redux/slices/flights";
 
-const DeleteLead = ({ onClose }) => {
+const DeleteFlight = ({ onClose }) => {
 	const [alertMessage, setAlertMessage] = useState("");
 	const [alertSeverity, setAlertSeverity] = useState("info");
-	const [inputFullname, setInputFullname] = useState("");
+	const [inputID, setInputID] = useState("");
 
 	const {
 		me: { _id: userID },
 	} = useSelector((state) => state.user);
 
-	const { setLead: lead } = useSelector((state) => state.leads);
+	const { setFlight: flight } = useSelector((state) => state.flights);
 
 	const token = localStorage.getItem("token");
 
-	const { fullname } = lead
+	const { _id } = flight
 
 	const theme = useTheme();
 	const dispatch = useDispatch();
 
 	const handleInputChange = (event) => {
-		setInputFullname(event.target.value);
+		setInputID(event.target.value);
 	};
 
 	
 	const handleDelete = async () => {
 		try {
 			const response = await dispatch(
-				deleteLead(userID, token, lead._id)
+				deleteFlight(userID, token, flight._id)
 			);
 
 			//extract success message
@@ -61,7 +61,7 @@ const DeleteLead = ({ onClose }) => {
 		}
 	};
 
-	const isFullnameMatch = inputFullname === fullname;
+	const isIDMatch = inputID === _id;
 
 
 	return (
@@ -74,17 +74,17 @@ const DeleteLead = ({ onClose }) => {
 				</Alert>
 			)}
 			<Typography variant="subtitle1" color="primary">
-				Please type the title of the blog to confirm deletion:
+				Please type the title of the flight to confirm deletion:
 				<br />
 				<span style={{ color: theme.palette.text.primary }}>
-					{lead.fullname}
+					{flight._id}
 				</span>
 			</Typography>
 			<TextField
 				fullWidth
 				variant="outlined"
-				placeholder="Type blog title here"
-				value={inputFullname}
+				placeholder="Type flight Id here"
+				value={inputID}
 				onChange={handleInputChange}
 				size="small"
 			/>
@@ -93,17 +93,17 @@ const DeleteLead = ({ onClose }) => {
 				color="error"
 				endIcon={<Iconify icon="mdi:delete" />}
 				onClick={handleDelete}
-				disabled={!isFullnameMatch}
+				disabled={!isIDMatch}
 				type="submit"
 			>
-				Delete this blog
+				Delete this flight
 			</Button>
 		</Stack>
 	);
 }
 
-DeleteLead.propTypes = {
+DeleteFlight.propTypes = {
 	onClose: PropTypes.func.isRequired,
 };
 
-export default DeleteLead
+export default DeleteFlight

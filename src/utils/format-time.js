@@ -9,7 +9,7 @@ export function fDate(date, newFormat) {
 }
 
 export function fDateAlt(dateString) {
-  return format(new Date(dateString), "PP");
+	return format(new Date(dateString), "PP");
 }
 
 export function fDateTime(date, newFormat) {
@@ -25,7 +25,18 @@ export function fTimestamp(date) {
 export function fToNow(date) {
 	return date
 		? formatDistanceToNow(new Date(date), {
-			addSuffix: true,
-		})
+				addSuffix: true,
+		  })
 		: "";
+}
+
+export function fTime(time) {
+	if (!time) return "";
+
+	const [hours, minutes] = time.split(":");
+	const parsedHours = parseInt(hours, 10);
+	const period = parsedHours >= 12 ? "PM" : "AM";
+	const formattedHours = parsedHours % 12 || 12;
+
+	return `${formattedHours}:${minutes} ${period}`;
 }

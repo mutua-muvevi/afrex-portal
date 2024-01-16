@@ -3,7 +3,6 @@ import DataGridCustom from "../../../../components/datagrid/custom";
 import { setFlight } from "../../../../redux/slices/flights";
 import { useSelector, useDispatch } from "../../../../redux/store";
 import ModalComponent from "../../../../components/modal/modal";
-// import EditFlight from "../edit/edit";
 import DeleteFlight from "../delete/delete";
 import EditFlight from "../edit/edit";
 
@@ -46,20 +45,20 @@ const FlightTable = () => {
 
 			<ModalComponent
 				open={openEdit}
-				onClose={() => setOpenDelete(false)}
+				onClose={() => setOpenEdit(false)}
 				title="Edit Flight"
-				maxWidth="sm"
-				height={250}
+				maxWidth="md"
+				height="50vh"
 			>
-				<EditFlight onClose={() => setOpenDelete(false)}/>
+				<EditFlight onClose={() => setOpenEdit(false)}/>
 			</ModalComponent> 
 
 			<ModalComponent
 				open={openDelete}
 				onClose={() => setOpenDelete(false)}
 				title="Delete Flight"
-				maxWidth="sm"
-				height={250}
+				maxWidth="md"
+				height="50vh"
 			>
 				<DeleteFlight onClose={() => setOpenDelete(false)}/>
 			</ModalComponent> 

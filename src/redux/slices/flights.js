@@ -21,6 +21,9 @@ const initialState = {
 
 	editFlight: null,
 	editFlightError: null,
+
+	fetchFlights: null,
+	fetchFlightsError: null,
 };
 
 //the slice
@@ -103,6 +106,17 @@ const slice = createSlice({
 			state.isLoading = false;
 			state.flightError = action.payload;
 		},
+
+		//FETCH FLIGHT
+		fetchFlights(state, action) {
+			state.isLoading = false;
+			state.fetchFlights = action.payload;
+		},
+
+		fetchFlightsError(state, action) {
+			state.isLoading = false;
+			state.fetchFlightsError = action.payload;
+		}
 	},
 });
 

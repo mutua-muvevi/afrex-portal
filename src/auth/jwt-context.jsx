@@ -91,7 +91,7 @@ export function AuthProvider({ children }) {
 			if (token && isValidToken(token)) {
 				setSession(token);
 
-				const response = await axios.get("/api/user/fetch/me", {
+				const response = await axios.get("https://afrex-bridge-connections-server.onrender.com/api/user/fetch/me", {
 					headers: {
 						Authorization: `${token}`,
 					},
@@ -151,7 +151,7 @@ export function AuthProvider({ children }) {
 	// LOGIN
 	const login = useCallback(async (email, password) => {
 		try {
-			const response = await axios.post("/api/user/login", {
+			const response = await axios.post("https://afrex-bridge-connections-server.onrender.com/api/user/login", {
 				email,
 				password,
 			});
@@ -175,7 +175,7 @@ export function AuthProvider({ children }) {
 
 	// REGISTER
 	const register = useCallback(async (email, password, fullname, country) => {
-		const response = await axios.post("/api/user/register", {
+		const response = await axios.post("https://afrex-bridge-connections-server.onrender.com/api/user/register", {
 			email,
 			password,
 			fullname,

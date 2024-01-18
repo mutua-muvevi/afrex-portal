@@ -33,9 +33,9 @@ const ShipmentMain = () => {
 				open={openAddShipment}
 				setOpen={setOpenAddShipment}
 				title="Add Shipment"
-				height="70vh"
+				height="50vh"
 				onClose={() => setOpenAddShipment(false)}
-				maxWidth="xl"
+				maxWidth="lg"
 			>
 				<AddShipment onClose={() => setOpenAddShipment(false)} />
 			</ModalComponent>

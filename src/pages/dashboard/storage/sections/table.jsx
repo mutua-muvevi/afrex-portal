@@ -47,7 +47,8 @@ const StorageTable = () => {
 				open={openEdit}
 				onClose={() => setOpenEdit(false)}
 				title="Edit Storage"
-				height="70vh"
+				height="50vh"
+				maxWidth="lg"
 			>
 				<EditStorage onClose={() => setOpenEdit(false)}/>
 			</ModalComponent>
@@ -55,7 +56,7 @@ const StorageTable = () => {
 			<ModalComponent
 				open={openDelete}
 				onClose={() => setOpenEdit(false)}
-				title="Edit Storage"
+				title="Delete Storage"
 				maxWidth="sm"
 				height={250}
 			>

@@ -103,14 +103,14 @@ const EditStorage = () => {
 	}, []);
 
 	const initialValues = {
-		depositor: storage && storage.depositor ? JSON.parse(storage.depositor) : {
+		depositor: storage && storage.depositor ? storage.depositor : {
 			fullname: "",
 			company: "",
 			address: "",
 			telephone: "",
 			email: "",
 		},
-		owner: storage && storage.owner ? JSON.parse(storage.owner) : {
+		owner: storage && storage.owner ? storage.owner : {
 			fullname: "",
 			company: "",
 			address: "",
@@ -127,7 +127,7 @@ const EditStorage = () => {
 			totalMarketValue: "",
 			description: "",
 		}],
-		acceptance: storage && storage.acceptance ? JSON.parse(storage.acceptance) : {
+		acceptance: storage && storage.acceptance ? storage.acceptance : {
 			from: {
 				date: "",
 				time: "",

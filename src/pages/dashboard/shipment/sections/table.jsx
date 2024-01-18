@@ -47,7 +47,8 @@ const ShipmentTable = () => {
 				open={openEdit}
 				onClose={() => setOpenEdit(false)}
 				title="EDit Shipment"
-				height="70vh"
+				height="50vh"
+				maxWidth="lg"
 			>
 				<EditShipment onClose={() => setOpenEdit(false)}/>
 			</ModalComponent>
@@ -55,7 +56,7 @@ const ShipmentTable = () => {
 			<ModalComponent
 				open={openDelete}
 				onClose={() => setOpenEdit(false)}
-				title="Edit Shipment"
+				title="Delete Shipment"
 				maxWidth="sm"
 				height={250}
 			>

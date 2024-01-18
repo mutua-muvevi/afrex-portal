@@ -41,6 +41,7 @@ const LoginForm = () => {
 			const response = await login(values.email, values.password);
 
 			// Extract message and success status from the response
+			console.log("The response is", response)
 			const { success, message } = response.data;
 
 			// Set the alert message from the response and determine severity

@@ -23,7 +23,7 @@ const StyledPage = styled(Box)(({ theme }) => ({
 const Page = forwardRef(({ children, title = "", meta, ...other }, ref) => (
 	<>
 		<Helmet>
-			<title>{`${title} | Freelancer's workstation`}</title>
+			<title>{`${title} | Afrex Bridge Connections`}</title>
 			{meta}
 		</Helmet>
 

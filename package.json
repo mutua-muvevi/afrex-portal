@@ -1,5 +1,5 @@
 {
-	"name": "skydiverhino-portal",
+	"name": "afrex-bridge-connection-portal",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
@@ -10,7 +10,7 @@
 	"license": "MIT",
 	"description": "",
 	"keywords": [
-		"skydive Kenya"
+		"Afrex Bridge Connections Kenya"
 	],
 	"scripts": {
 		"dev": "vite",

@@ -71,13 +71,13 @@ const ModalComponent = ({ selectedRow, open, onClose, title, actions }) => {
 											marginBottom: { xs: 1, lg: 0 },
 										}}
 									>
-										{key ? sentenceCase(key) : "No data"}
+										{key ? key : "No data"}
 									</Typography>
 									{Array.isArray(value) ? (
 										renderArrayTable(value)
 									) : (
 										<Typography variant="subtitle1">
-											{ typeof value === "string" ? sentenceCase(value.toString()) : null}
+											{ typeof value === "string" ? value.toString() : null}
 										</Typography>
 									)}
 

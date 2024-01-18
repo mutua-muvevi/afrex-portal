@@ -84,35 +84,35 @@ const EditFlight = () => {
 	}, []);
 
 	const initialValues = {
-		airplane: flight && flight.airplane ? JSON.parse(flight.airplane) : {
+		airplane: flight && flight.airplane ? flight.airplane : {
 			airline: "",
 			aircraft: "",
 			regNo: "",
 		},
-		departureTime: flight && flight.departureTime ? JSON.parse(flight.departureTime) : {
+		departureTime: flight && flight.departureTime ? flight.departureTime : {
 			date: "",
 			time: "",
 			timezone: "",
 		},
 
-		arrivalTime: flight && flight.arrivalTime ? JSON.parse(flight.arrivalTime) : {
+		arrivalTime: flight && flight.arrivalTime ? flight.arrivalTime : {
 			date: "",
 			time: "",
 			timezone: "",
 		},
 
-		status: flight && flight.status ? JSON.parse(flight.status) : {
+		status: flight && flight.status ? flight.status : {
 			title: "",
 			description: "",
 		},
 
-		originAirport: flight && flight.originAirport ? JSON.parse(flight.originAirport) : {
+		originAirport: flight && flight.originAirport ? flight.originAirport : {
 			name: "",
 			city: "",
 			country: "",
 		},
 
-		destinationAirport: flight && flight.destinationAirport ? JSON.parse(flight.destinationAirport) : {
+		destinationAirport: flight && flight.destinationAirport ? flight.destinationAirport : {
 			name: "",
 			city: "",
 			country: "",

@@ -14,7 +14,7 @@ import Logo from "../../../components/logo";
 import Iconify from "../../../components/iconify";
 import { useSettingsContext } from "../../../components/settings";
 //
-import Searchbar from "./Searchbar";
+import Searchbar from "./searchbar";
 import AccountPopover from "./account-popover";
 import LanguagePopover from "./language-popover";
 import ContactsPopover from "./contacts-popover";

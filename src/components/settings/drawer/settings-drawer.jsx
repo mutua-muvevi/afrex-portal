@@ -26,9 +26,7 @@ import BadgeDot from "./badge-dot";
 import ToggleButton from "./toggle-button";
 import ModeOptions from "./mode-options";
 import LayoutOptions from "./layout-options";
-import StretchOptions from "./stretch-options";
 import ContrastOptions from "./contrast-options";
-import DirectionOptions from "./direction-options";
 import FullScreenOptions from "./fullscreen-options";
 import ColorPresetsOptions from "./color-presets-options";
 

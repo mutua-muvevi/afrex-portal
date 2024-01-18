@@ -1,4 +1,5 @@
 // utils/pie.js
+import { sentenceCase } from "change-case";
 
 /**
  * Processes reservation data to get the count of data per service.
@@ -11,9 +12,7 @@ export const processPieChartData = (data) => {
 	const countPerService = data.reduce((acc, reservation) => {
 		// Extract the service name from each reservation
 		const serviceName = reservation.service
-			? reservation.service.name
-				? reservation.service.fullname
-				: "No Service"
+			? sentenceCase(reservation.service)
 			: "No Service";
 
 		// If 'serviceName' exists in accumulator 'acc', increment its count by 1

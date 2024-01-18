@@ -132,7 +132,7 @@ export function fetchAllFlights(userID, token) {
 		dispatch(slice.actions.startLoading());
 		try {
 			const response = await axios.get(
-				`http://localhost:9900/api/flight/${userID}/fetch/all`,
+				`https://afrex-bridge-connections-server.onrender.com/api/flight/${userID}/fetch/all`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -162,7 +162,7 @@ export function addFlight(userID, token, values) {
 
 		try {
 			const response = await axios.post(
-				`http://localhost:9900/api/flight/${userID}/post`,
+				`https://afrex-bridge-connections-server.onrender.com/api/flight/${userID}/post`,
 				values,
 				{
 					headers: {
@@ -192,7 +192,7 @@ export function deleteFlight(userID, token, flightID) {
 
 		try {
 			const response = await axios.delete(
-				`http://localhost:9900/api/flight/${userID}/delete/single/${flightID}`,
+				`https://afrex-bridge-connections-server.onrender.com/api/flight/${userID}/delete/single/${flightID}`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -221,7 +221,7 @@ export function editFlight(userID, token, flightID, values) {
 
 		try {
 			const response = await axios.put(
-				`http://localhost:9900/api/flight/${userID}/edit/${flightID}`,
+				`https://afrex-bridge-connections-server.onrender.com/api/flight/${userID}/edit/${flightID}`,
 				values,
 				{
 					headers: {

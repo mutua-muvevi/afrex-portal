@@ -110,8 +110,10 @@ export const processDataForGrid = (data, nestedDataRenderer) => {
 					typeof item[key] === "object" &&
 					item[key] !== null
 				) {
-					// Display only the name of the object
-					processedItem[key] = key || "";
+					// Display date pr aircraft or airport if available, else display the name of the object
+					processedItem[key] = item[key].date
+						? fDateAlt(item[key].date)
+						: item[key].name || item[key].title || item[key].aircraft || key || "";
 				}
 			}
 		});

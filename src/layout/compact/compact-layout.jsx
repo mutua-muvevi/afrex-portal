@@ -6,7 +6,7 @@ import useOffSetTop from "../../hooks/use-offset-top"
 // config
 import { HEADER } from "../../config/global";
 //
-import Header from "./Header";
+import Header from "./header";
 
 // ----------------------------------------------------------------------
 

@@ -132,19 +132,8 @@ export default function SettingsDrawer() {
 						<ContrastOptions />
 					</Block>
 
-					<Block title="Direction">
-						<DirectionOptions />
-					</Block>
-
 					<Block title="Layout">
 						<LayoutOptions />
-					</Block>
-
-					<Block
-						title="Stretch"
-						tooltip="Only available at large resolutions > 1600px (xl)"
-					>
-						<StretchOptions />
 					</Block>
 
 					<Block title="Presets">

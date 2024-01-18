@@ -33,9 +33,9 @@ const StorageMain = () => {
 				open={openAddStorage}
 				setOpen={setOpenAddStorage}
 				title="Add Storage"
-				height="70vh"
+				height="50vh"
 				onClose={() => setOpenAddStorage(false)}
-				maxWidth="xl"
+				maxWidth="lg"
 			>
 				<AddStorage onClose={() => setOpenAddStorage(false)} />
 			</ModalComponent>

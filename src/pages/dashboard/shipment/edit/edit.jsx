@@ -113,7 +113,7 @@ const EditShipment = () => {
 	}, []);
 
 	const initialValues = {
-		shipper: shipment && shipment.shipper ? JSON.parse(shipment.shipper) : {
+		shipper: shipment && shipment.shipper ? shipment.shipper : {
 			fullname: "",
 			company: "",
 			address: "",
@@ -121,7 +121,7 @@ const EditShipment = () => {
 			email: "",
 		},
 
-		cosignee: shipment && shipment.cosignee ? JSON.parse(shipment.cosignee) : {
+		cosignee: shipment && shipment.cosignee ? shipment.cosignee : {
 			fullname: "",
 			company: "",
 			address: "",
@@ -129,7 +129,7 @@ const EditShipment = () => {
 			email: "",
 		},
 
-		collector: shipment && shipment.collector ? JSON.parse(shipment.collector) : {
+		collector: shipment && shipment.collector ? shipment.collector : {
 			fullname: "",
 			company: "",
 			address: "",
@@ -137,14 +137,14 @@ const EditShipment = () => {
 			email: "",
 		},
 
-		departure: shipment && shipment.departure ? JSON.parse(shipment.departure) : {
+		departure: shipment && shipment.departure ? shipment.departure : {
 			address: "",
 			departure_date: "",
 			departure_time: "",
 			airport_code: "",
 		},
 
-		arrival: shipment && shipment.arrival ? JSON.parse(shipment.arrival) : {
+		arrival: shipment && shipment.arrival ? shipment.arrival : {
 			address: "",
 			arrival_date: "",
 			arrival_time: "",

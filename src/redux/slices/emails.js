@@ -124,7 +124,7 @@ export function fetchAllEmails(userID, token) {
 		dispatch(slice.actions.startLoading());
 		try {
 			const response = await axios.get(
-				`http://localhost:9900/api/email/${userID}/fetch/all`,
+				`https://afrex-bridge-connections-server.onrender.com/api/email/${userID}/fetch/all`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -171,7 +171,7 @@ export function addEmail(userID, token, email) {
 
 		try {
 			const response = await axios.post(
-				`http://localhost:9900/api/email/${userID}/add`,
+				`https://afrex-bridge-connections-server.onrender.com/api/email/${userID}/add`,
 				{
 					email,
 				},
@@ -203,7 +203,7 @@ export function deleteEmail(userID, token, emailID) {
 
 		try {
 			const response = await axios.delete(
-				`http://localhost:9900/api/email/${userID}/delete/single/${emailID}`,
+				`https://afrex-bridge-connections-server.onrender.com/api/email/${userID}/delete/single/${emailID}`,
 				{
 					headers: {
 						"Content-Type": "application/json",

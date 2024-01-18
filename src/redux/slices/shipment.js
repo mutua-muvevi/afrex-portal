@@ -152,7 +152,7 @@ export function addShipment(userID, token, values) {
 
 		try {
 			const response = await axios.post(
-				`http://localhost:9900/api/shipment/${userID}/post`,
+				`https://afrex-bridge-connections-server.onrender.com/api/shipment/${userID}/post`,
 				values,
 				{
 					headers: {
@@ -182,7 +182,7 @@ export function deleteShipment(userID, token, shipmentID) {
 
 		try {
 			const response = await axios.delete(
-				`http://localhost:9900/api/shipment/${userID}/delete/single/${shipmentID}`,
+				`https://afrex-bridge-connections-server.onrender.com/api/shipment/${userID}/delete/single/${shipmentID}`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -212,7 +212,7 @@ export function fetchAllShipments() {
 
 		try {
 			const response = await axios.get(
-				`http://localhost:9900/api/shipment/fetch/all`,
+				`https://afrex-bridge-connections-server.onrender.com/api/shipment/fetch/all`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -240,7 +240,7 @@ export function fetchSingleShipment(shipmentID) {
 
 		try {
 			const response = await axios.get(
-				`http://localhost:9900/api/shipment/fetch/single/${shipmentID}`,
+				`https://afrex-bridge-connections-server.onrender.com/api/shipment/fetch/single/${shipmentID}`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -284,7 +284,7 @@ export function editShipment(userID, token, shipmentID, values) {
 
 		try {console.log("Values", values)
 			const response = await axios.put(
-				`http://localhost:9900/api/shipment/${userID}/edit/${shipmentID}`,
+				`https://afrex-bridge-connections-server.onrender.com/api/shipment/${userID}/edit/${shipmentID}`,
 				values,
 				{
 					headers: {

@@ -152,7 +152,7 @@ export function addStorage(userID, token, values) {
 
 		try {
 			const response = await axios.post(
-				`http://localhost:9900/api/storage/${userID}/post`,
+				`https://afrex-bridge-connections-server.onrender.com/api/storage/${userID}/post`,
 				values,
 				{
 					headers: {
@@ -182,7 +182,7 @@ export function deleteStorage(userID, token, storageID) {
 
 		try {
 			const response = await axios.delete(
-				`http://localhost:9900/api/storage/${userID}/delete/single/${storageID}`,
+				`https://afrex-bridge-connections-server.onrender.com/api/storage/${userID}/delete/single/${storageID}`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -212,7 +212,7 @@ export function fetchAllStorages() {
 
 		try {
 			const response = await axios.get(
-				`http://localhost:9900/api/storage/fetch/all`,
+				`https://afrex-bridge-connections-server.onrender.com/api/storage/fetch/all`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -240,7 +240,7 @@ export function fetchSingleStorage(storageID) {
 
 		try {
 			const response = await axios.get(
-				`http://localhost:9900/api/storage/fetch/single/${storageID}`,
+				`https://afrex-bridge-connections-server.onrender.com/api/storage/fetch/single/${storageID}`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -284,7 +284,7 @@ export function editStorage(userID, token, storageID, values) {
 
 		try {console.log("Values", values)
 			const response = await axios.put(
-				`http://localhost:9900/api/storage/${userID}/edit/${storageID}`,
+				`https://afrex-bridge-connections-server.onrender.com/api/storage/${userID}/edit/${storageID}`,
 				values,
 				{
 					headers: {

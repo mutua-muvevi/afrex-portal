@@ -128,7 +128,7 @@ export default function Router() {
 				// { path: "*", element: <Navigate to="/404" replace /> },
 			],
 		},
-		{ path: "/", element: <Navigate to="/admin/home" replace /> },
+		{ path: "/", element: <Navigate to="/admin/leads" replace /> },
 
 		//other ----------------------------------
 		{

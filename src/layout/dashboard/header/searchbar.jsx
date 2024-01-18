@@ -115,8 +115,6 @@ function SearchbarNav() {
 			indexKey: "minimal",
 		};
 	});
-	console.log("All items are", allItems);
-	console.log("reduced items are", reduceItems);
 
 	useEffect(() => {
 		if (open) {

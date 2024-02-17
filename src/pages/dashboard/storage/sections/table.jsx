@@ -14,7 +14,7 @@ const StorageTable = () => {
 
 	const modalActions = [
 		{
-			label: "EDit",
+			label: "Edit",
 			action: "edit",
 			icon: "ic:baseline-edit",
 			onClick: (rowData) => {

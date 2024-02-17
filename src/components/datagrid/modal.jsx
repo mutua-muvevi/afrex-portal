@@ -15,14 +15,30 @@ import Iconify from "../iconify";
 import Scrollbar from "../scrollbar";
 import { sentenceCase } from "change-case";
 import TableComponent from "../table/table";
+import { fDateAlt } from "../../utils/format-time";
 
 const ModalComponent = ({ selectedRow, open, onClose, title, actions }) => {
 	const theme = useTheme();
 
+	const isDatetimeString = (value) => {
+		const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,3})?Z$/;
+		return regex.test(value);
+	};
+
 	// Function to render table for array values
 	const renderArrayTable = (array) => {
 		const columns = array.length > 0 ? Object.keys(array[0]) : [];
-		return <TableComponent columns={columns} array={array} />;
+
+		// Modify the array to apply fDateAlt() to the date field if it exists
+		const formattedArray = array.map((row) => {
+			if (row.date) {
+				// Apply fDateAlt() to format the date field
+				return { ...row, date: fDateAlt(row.date) };
+			}
+			return row;
+		});
+
+		return <TableComponent columns={columns} array={formattedArray} />;
 	};
 
 	return (
@@ -71,22 +87,15 @@ const ModalComponent = ({ selectedRow, open, onClose, title, actions }) => {
 											marginBottom: { xs: 1, lg: 0 },
 										}}
 									>
-										{key ? key : "No data"}
+										{key ? sentenceCase(key) : "No data"}
 									</Typography>
 									{Array.isArray(value) ? (
 										renderArrayTable(value)
-									) : (
-										<Typography variant="subtitle1">
-											{ typeof value === "string" ? value.toString() : null}
-										</Typography>
-									)}
-
-									{/* if the value is an object and if it has nested properties render them in terms of title subtitle */}
-									{typeof value === "object" &&
+									) : typeof value === "object" ? (
 										Object.entries(value).map(
-											([key, value]) => (
+											([nestedKey, nestedValue]) => (
 												<Stack
-													key={key}
+													key={nestedKey}
 													direction="row"
 													spacing={3}
 												>
@@ -101,28 +110,32 @@ const ModalComponent = ({ selectedRow, open, onClose, title, actions }) => {
 															},
 														}}
 													>
-														{key
-															? sentenceCase(key)
+														{nestedKey
+															? sentenceCase(
+																nestedKey
+															)
 															: "No data"}
 													</Typography>
 													<Typography variant="subtitle2">
-														<span
-															style={{
-																color: theme
-																	.palette
-																	.primary
-																	.main,
-															}}
-														>
-															: &nbsp;
-														</span>{" "}
-														{sentenceCase(
-															value.toString()
-														)}
+														{typeof nestedValue === "object"
+															? Object.values(nestedValue)
+																.map((val) => (val === "" ? "____" : val))
+																.join(",   ")
+															: nestedValue.toString()}
+														{console.log("Nested dta here", nestedValue)}
 													</Typography>
+
 												</Stack>
 											)
-										)}
+										)
+									) : (
+										<Typography variant="subtitle1">
+											{typeof value === "string" &&
+											isDatetimeString(value)
+												? fDateAlt(value)
+												: value}
+										</Typography>
+									)}
 								</Stack>
 							))}
 					</Stack>

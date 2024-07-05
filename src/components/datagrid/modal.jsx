@@ -122,7 +122,7 @@ const ModalComponent = ({ selectedRow, open, onClose, title, actions }) => {
 																.map((val) => (val === "" ? "____" : val))
 																.join(",   ")
 															: nestedValue.toString()}
-														{console.log("Nested dta here", nestedValue)}
+														
 													</Typography>
 
 												</Stack>

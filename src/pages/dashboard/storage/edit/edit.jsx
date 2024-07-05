@@ -55,10 +55,10 @@ const validationSchema = Yup.object().shape({
 			date: Yup.string().required("Required"),
 			time: Yup.string().required("Required"),
 		}),
-		to: Yup.object().shape({
-			date: Yup.string().required("Required"),
-			time: Yup.string().required("Required"),
-		}),
+		// to: Yup.object().shape({
+		// 	date: Yup.string().required("Required"),
+		// 	time: Yup.string().required("Required"),
+		// }),
 	}),
 
 	privateMarks: Yup.string().required("Required"),
@@ -132,10 +132,10 @@ const EditStorage = () => {
 				date: "",
 				time: "",
 			},
-			to: {
-				date: "",
-				time: "",
-			},
+			// to: {
+			// 	date: "",
+			// 	time: "",
+			// },
 		},
 		privateMarks: storage && storage.privateMarks ? storage.privateMarks : "",
 		handlingCharges: storage && storage.handlingCharges ? storage.handlingCharges : "",

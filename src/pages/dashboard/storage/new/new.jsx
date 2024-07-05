@@ -54,10 +54,10 @@ const initialValues = {
 			date: "",
 			time: "",
 		},
-		to: {
-			date: "",
-			time: "",
-		}
+		// to: {
+		// 	date: "",
+		// 	time: "",
+		// }
 	},
 
 	privateMarks: "",

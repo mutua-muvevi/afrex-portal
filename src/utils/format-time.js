@@ -1,4 +1,11 @@
-import { format, getTime, formatDistanceToNow } from "date-fns";
+import {
+	format,
+	getTime,
+	formatDistanceToNow,
+	parse,
+	parseISO,
+	isValid,
+} from "date-fns";
 
 // ----------------------------------------------------------------------
 
@@ -9,7 +16,26 @@ export function fDate(date, newFormat) {
 }
 
 export function fDateAlt(dateString) {
-	return format(new Date(dateString), "PP");
+	console.log(dateString);
+
+	let parsedDate;
+	// Check if the dateString is in DD/MM/YYYY format
+	const isDMYFormat = /^\d{2}\/\d{2}\/\d{4}$/.test(dateString);
+
+	if (isDMYFormat) {
+		// Parse the date string in DD/MM/YYYY format
+		parsedDate = parse(dateString, "dd/MM/yyyy", new Date());
+	} else {
+		// Assume the date string is in ISO format
+		parsedDate = parseISO(dateString);
+	}
+
+	if (isValid(parsedDate)) {
+		return format(parsedDate, "PP");
+	} else {
+		// If not a valid date, return the original string
+		return dateString;
+	}
 }
 
 export function fDateTime(date, newFormat) {

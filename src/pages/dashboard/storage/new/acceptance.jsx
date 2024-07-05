@@ -8,8 +8,8 @@ const Acceptance = () => {
 			{/* //acceptance */}
 			<DateField label="Accepted from Date" name="acceptance.from.date" />
 			<TimeField label="Accepted from Time" name="acceptance.from.time" />
-			<DateField label="Accepted up to Date" name="acceptance.to.date" />
-			<TimeField label="Accepted up to Time" name="acceptance.to.time" />
+			{/* <DateField label="Accepted up to Date" name="acceptance.to.date" />
+			<TimeField label="Accepted up to Time" name="acceptance.to.time" /> */}
 		</Stack>
 	);
 };

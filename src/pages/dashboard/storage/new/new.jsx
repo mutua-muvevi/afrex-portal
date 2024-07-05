@@ -106,10 +106,10 @@ const validationSchema = Yup.object().shape({
 			date: Yup.string().required("Required"),
 			time: Yup.string().required("Required"),
 		}),
-		to: Yup.object().shape({
-			date: Yup.string().required("Required"),
-			time: Yup.string().required("Required"),
-		})
+		// to: Yup.object().shape({
+		// 	date: Yup.string(),
+		// 	time: Yup.string(),
+		// })
 	}),
 
 	privateMarks: Yup.string().required("Required"),

@@ -62,10 +62,7 @@ const Preview = ({ values }) => {
 					From: {values.acceptance.from.date}{" "}
 					{values.acceptance.from.time}
 				</Typography>
-
-				<Typography variant="body1">
-					To: {values.acceptance.to.date} {values.acceptance.to.time}
-				</Typography>
+				
 			</Stack>
 
 			{values.productDetails.map((product, index) => (

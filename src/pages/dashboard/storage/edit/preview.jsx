@@ -63,9 +63,6 @@ const Preview = ({ values }) => {
 					{values.acceptance.from.time}
 				</Typography>
 
-				<Typography variant="body1">
-					To: {values.acceptance.to.date} {values.acceptance.to.time}
-				</Typography>
 			</Stack>
 
 			{values.productDetails.map((product, index) => (
@@ -180,7 +177,7 @@ const Preview = ({ values }) => {
 					Deposit Date
 				</Typography>
 
-				<Typography variant="body1">{values.depositDate}</Typography>
+				<Typography variant="body1">{values?.depositDate}</Typography>
 			</Stack>
 
 			<Stack direction="column" spacing={1} sx={styledStack}>
@@ -188,7 +185,7 @@ const Preview = ({ values }) => {
 					Deposit Time
 				</Typography>
 
-				<Typography variant="body1">{values.depositTime}</Typography>
+				<Typography variant="body1">{values?.depositTime}</Typography>
 			</Stack>
 
 			<Stack direction="column" spacing={1} sx={styledStack}>

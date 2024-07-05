@@ -30,7 +30,7 @@ export default function ComingSoonPage() {
 	return (
 		<>
 			<Helmet>
-				<title> Coming Soon | Skydive Rhino Kenya</title>
+				<title> Coming Soon | Afrex Bridge Connections</title>
 			</Helmet>
 
 			<Typography variant="h3" paragraph>

@@ -17,10 +17,6 @@ import { IconButtonAnimate } from "../../../components/animate";
 
 const OPTIONS = [
 	{
-		label: "Homepage",
-		linkTo: PATH_DASHBOARD.general.home, //this will be the link to the homepage of main website
-	},
-	{
 		label: "Settings",
 		linkTo: PATH_DASHBOARD.general.account.overview,
 	},

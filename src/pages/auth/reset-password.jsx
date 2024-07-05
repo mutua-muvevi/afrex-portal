@@ -17,7 +17,7 @@ export default function ResetPasswordPage() {
 	return (
 		<>
 			<Helmet>
-				<title> Reset Password | Skydive Rhino Kenya</title>
+				<title> Reset Password | Afrex Bridge Connections</title>
 			</Helmet>
 
 			<PasswordIcon sx={{ mb: 5, height: 96 }} />

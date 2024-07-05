@@ -17,7 +17,7 @@ export default function CheckEmail() {
 	return (
 		<>
 			<Helmet>
-				<title> Verify Code | Skydive Rhino Kenya </title>
+				<title> Verify Code | Afrex Bridge Connections </title>
 			</Helmet>
 
 			<EmailInboxIcon sx={{ mb: 5, height: 96 }} />

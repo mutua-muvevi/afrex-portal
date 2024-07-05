@@ -11,7 +11,7 @@ export default function MaintenancePage() {
 	return (
 		<>
 			<Helmet>
-				<title> Maintenance | Skydive Rhino Kenya</title>
+				<title> Maintenance | Afrex Bridge Connections</title>
 			</Helmet>
 
 			<Stack sx={{ alignItems: "center" }}>

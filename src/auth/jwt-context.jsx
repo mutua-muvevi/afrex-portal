@@ -193,6 +193,8 @@ export function AuthProvider({ children }) {
 				message,
 			},
 		});
+
+		return { user, message };
 	}, []);
 
 	// LOGOUT

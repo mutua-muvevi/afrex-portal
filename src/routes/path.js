@@ -35,7 +35,7 @@ export const PATH_DASHBOARD = {
 	//main
 	general: {
 		//home:
-		home: path(ROOTS_DASHBOARD, "/home"),
+		home: path(ROOTS_DASHBOARD, "/leads"),
 
 		//account:
 		account: {

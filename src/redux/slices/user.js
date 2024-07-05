@@ -291,7 +291,7 @@ export function resetPassword(values){
 
 		try {
 			const response = await axios.post(
-				"https://afrex-bridge-connections-server.onrender.com/api/user/reset/password",
+				"https://afrex-bridge-connections-server.onrender.com/api/user/forgotpassword",
 				values,
 				{
 					headers: {
@@ -317,7 +317,7 @@ export function newPassword(values, resetToken){
 
 		try {
 			const response = await axios.post(
-				`https://afrex-bridge-connections-server.onrender.com/api/user/new/password/${resetToken}`,
+				`https://afrex-bridge-connections-server.onrender.com/api/user/resetpassword/${resetToken}`,
 				values,
 				{
 					headers: {

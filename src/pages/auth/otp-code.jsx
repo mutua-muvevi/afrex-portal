@@ -60,7 +60,7 @@ export default function OTPCode() {
 	return (
 		<>
 			<Helmet>
-				<title> New Password | Skydive Rhino Kenya</title>
+				<title> New Password | Afrex Bridge Connections</title>
 			</Helmet>
 
 			<SentIcon sx={{ mb: 5, height: 96 }} />

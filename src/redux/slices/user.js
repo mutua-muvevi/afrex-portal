@@ -300,7 +300,6 @@ export function resetPassword(values){
 				}
 			);
 
-			console.log("user reset password response", response)
 			dispatch(slice.actions.resetPassword(response.data));
 			return response;
 
@@ -327,7 +326,6 @@ export function newPassword(values, resetToken){
 				}
 			);
 
-			console.log("user new password response", response)
 			dispatch(slice.actions.newPassword(response.data));
 			return response;
 
@@ -355,7 +353,6 @@ export function editUser(values, token, userID){
 				}
 			);
 
-			console.log("user edit response", response)
 			dispatch(slice.actions.editUser(response.data));
 			return response;
 

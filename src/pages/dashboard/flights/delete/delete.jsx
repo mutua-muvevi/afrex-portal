@@ -21,7 +21,7 @@ const DeleteFlight = ({ onClose }) => {
 		me: { _id: userID },
 	} = useSelector((state) => state.user);
 
-	const { setFlight: flight } = useSelector((state) => state.flights);
+	const { flight } = useSelector((state) => state.flights);
 
 	const token = localStorage.getItem("token");
 

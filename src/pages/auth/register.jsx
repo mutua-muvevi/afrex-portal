@@ -8,7 +8,7 @@ export default function RegisterPage() {
 	return (
 		<>
 			<Helmet>
-				<title> Register | Skydive Rhino Kenya</title>
+				<title> Register | Afrex Bridge Connections</title>
 			</Helmet>
 
 			<Register />

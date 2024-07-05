@@ -61,7 +61,7 @@ export const processDataForGrid = (data, nestedDataRenderer) => {
 					key.includes(`createdAt`)
 				) {
 					// Format date fields
-					acc[key] = fDateAlt(item[key]);
+					acc[key] = item[key] ? fDateAlt(item[key]) : item[key];
 				} else {
 					// Include other fields as they are
 					acc[key] = item[key];

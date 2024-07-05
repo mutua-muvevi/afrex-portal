@@ -13,10 +13,10 @@ const Owner = () => {
 			<Textfield label="Account Number" name="owner.accountNo" />
 
 			{/* //acceptance */}
-			<Textfield label="From Date" name="acceptance.from.date" />
-			<Textfield label="From Time" name="acceptance.from.time" />
-			<Textfield label="To Date" name="acceptance.to.date" />
-			<Textfield label="To Time" name="acceptance.to.time" />
+			{/* <Textfield label="From Date" name="acceptance.from.date" />
+			<Textfield label="From Time" name="acceptance.from.time" /> */}
+			{/* <Textfield label="To Date" name="acceptance.to.date" />
+			<Textfield label="To Time" name="acceptance.to.time" /> */}
 		</Stack>
 	);
 };

@@ -10,7 +10,7 @@ const StorageTable = () => {
 	const [openEdit, setOpenEdit] = useState(false);
 	const [openDelete, setOpenDelete] = useState(false);
 	const dispatch = useDispatch();
-	const { storages: { data: allStorage } } = useSelector((state) => state.storage);
+	const { storages: { data: allStorage } } = useSelector((state) => state?.storage);
 
 	const modalActions = [
 		{

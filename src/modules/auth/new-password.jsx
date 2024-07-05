@@ -19,7 +19,7 @@ import * as Yup from "yup";
 import Textfield from "../../components/form/textfield/textfield";
 import Iconify from "../../components/iconify";
 
-import { useDispatch, useSelector } from "../../redux/store";
+import { useDispatch } from "../../redux/store";
 import { newPassword } from "../../redux/slices/user";
 
 import { PATH_AUTH } from "../../routes/path";
@@ -50,7 +50,7 @@ const NewPassword = () => {
 	const theme = useTheme();
 
 	const dispatch = useDispatch();
-	const { resetPassword: { resetToken } } = useSelector((state) => state.user);
+	let resetToken = window.location.pathname.split('/').pop();
 
 	const submitHandler = async (values) => {
 		try {

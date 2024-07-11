@@ -9,6 +9,7 @@ import {
 	Step,
 	StepLabel,
 	Stepper,
+	Typography,
 } from "@mui/material";
 
 import ShippingItems from "./items";
@@ -22,62 +23,63 @@ import ShippingArrival from "./arrival";
 import Iconify from "../../../../components/iconify";
 import { editShipment } from "../../../../redux/slices/shipment";
 import { useDispatch, useSelector } from "../../../../redux/store";
+import { isObjectEmpty } from "../../../../utils/object"
 
 const validationSchema = Yup.object().shape({
 	shipper: Yup.object().shape({
-		fullname: Yup.string().required("Required"),
-		company: Yup.string().required("Required"),
-		address: Yup.string().required("Required"),
-		telephone: Yup.string().required("Required"),
+		fullname: Yup.string().required("The shipper's name is Required"),
+		company: Yup.string(),
+		address: Yup.string().required(" The address of shipper is Required"),
+		telephone: Yup.string().required("The phone number of shipper is Required"),
 		email: Yup.string().email("Invalid email").required("Required"),
 	}),
 
 	cosignee: Yup.object().shape({
-		fullname: Yup.string().required("Required"),
-		company: Yup.string().required("Required"),
-		address: Yup.string().required("Required"),
-		telephone: Yup.string().required("Required"),
+		fullname: Yup.string().required("The name of cosignee is Required"),
+		company: Yup.string(),
+		address: Yup.string().required("The address of cosignee is Required"),
+		telephone: Yup.string(),
 		email: Yup.string().email("Invalid email").required("Required"),
 	}),
 
 	collector: Yup.object().shape({
-		fullname: Yup.string().required("Required"),
-		company: Yup.string().required("Required"),
-		address: Yup.string().required("Required"),
-		telephone: Yup.string().required("Required"),
-		email: Yup.string().email("Invalid email").required("Required"),
+		fullname: Yup.string().required("The collector's name is Required"),
+		company: Yup.string(),
+		address: Yup.string().required("The collector's address is Required"),
+		telephone: Yup.string(),
+		email: Yup.string().email("Invalid email").required("The collector's email is Required"),
 	}),
 
 	departure: Yup.object().shape({
-		address: Yup.string().required("Required"),
-		airport_code: Yup.string().required("Required"),
-		departure_date: Yup.string().required("Required"),
-		departure_time: Yup.string().required("Required"),
+		address: Yup.string().required("The address of departure is Required"),
+		airport_code: Yup.string().required("The airport code of departure is Required"),
+		departure_date: Yup.string().required("The date of departure is Required"),
+		departure_time: Yup.string().required("The time of departure is Required"),
 	}),
 
 	arrival: Yup.object().shape({
-		address: Yup.string().required("Required"),
-		airport_code: Yup.string().required("Required"),
-		arrival_date: Yup.string().required("Required"),
-		arrival_time: Yup.string().required("Required"),
+		address: Yup.string().required("Address of Destination is Required"),
+		airport_code: Yup.string().required("Airport code of Destination is Required"),
+		arrival_date: Yup.string(),
+		arrival_time: Yup.string(),
 	}),
 
 	items: Yup.array().of(
 		Yup.object().shape({
 			description: Yup.string(),
-			unit: Yup.string().required("Required"),
-			weight: Yup.string().required("Required"),
-			amount: Yup.string().required("Required"),
+			unit: Yup.string().required("Unit of measurement is Required"),
+			weight: Yup.string().required("Weight of the item is Required"),
+			amount: Yup.string().required("Amount of the item is Required"),
 		})
 	),
 
 	events: Yup.array().of(
 		Yup.object().shape({
-			date: Yup.string().required("Required"),
-			time: Yup.string().required("Required"),
-			address: Yup.string().required("Required"),
-			status: Yup.string().required("Required"),
-			description: Yup.string().required("Required"),
+			date: Yup.string().required("Date of the event is Required"),
+			time: Yup.string().required("Time of the event is Required"),
+			address: Yup.string().required("The address of the event is Required"),
+			status: Yup.string().required("The status of the event is Required"),
+			description: Yup.string().required("The description of the event is Required"),
 		})
 	),
 });
@@ -113,52 +115,71 @@ const EditShipment = () => {
 	}, []);
 
 	const initialValues = {
-		shipper: shipment && shipment.shipper ? shipment.shipper : {
-			fullname: "",
-			company: "",
-			address: "",
-			telephone: "",
-			email: "",
-		},
+		shipper:
+			shipment && shipment.shipper
+				? shipment.shipper
+				:	{
+						fullname: "",
+						company: "",
+						address: "",
+						telephone: "",
+						email: "",
+				},
 
-		cosignee: shipment && shipment.cosignee ? shipment.cosignee : {
-			fullname: "",
-			company: "",
-			address: "",
-			telephone: "",
-			email: "",
-		},
+		cosignee:
+			shipment && shipment.cosignee
+				? shipment.cosignee
+				: {
+							fullname: "",
+							company: "",
+							address: "",
+							telephone: "",
+							email: "",
+				},
 
-		collector: shipment && shipment.collector ? shipment.collector : {
-			fullname: "",
-			company: "",
-			address: "",
-			telephone: "",
-			email: "",
-		},
+		collector:
+			shipment && shipment.collector
+				? shipment.collector
+				: {
+						fullname: "",
+						company: "",
+						address: "",
+						telephone: "",
+						email: "",
+				},
 
-		departure: shipment && shipment.departure ? shipment.departure : {
-			address: "",
-			departure_date: "",
-			departure_time: "",
-			airport_code: "",
-		},
+		departure:
+			shipment && shipment.departure
+				? shipment.departure
+				: {
+						address: "",
+						departure_date: "",
+						departure_time: "",
+						airport_code: "",
+				},
 
-		arrival: shipment && shipment.arrival ? shipment.arrival : {
-			address: "",
-			arrival_date: "",
-			arrival_time: "",
-			airport_code: "",
-		},
+		arrival:
+			shipment && shipment.arrival
+				? shipment.arrival
+				: {
+						address: "",
+						arrival_date: "",
+						arrival_time: "",
+						airport_code: "",
+				},
 
 		items: shipment.items,
 
 		events: shipment.events,
+		track_number: shipment.track_number,
 	};
 
 	const handleSubmit = async (values, actions) => {
 		try {
-			const response = await dispatch(editShipment(me._id, token, shipment._id, values));
+			
+			const response = await dispatch(
+				editShipment(me._id, token, shipment._id, values)
+			);
 			// extract success message
 			const { success, message } = response;
 
@@ -169,7 +190,7 @@ const EditShipment = () => {
 			// close the modal
 			if (success) {
 				setTimeout(() => {
-					// window.location.reload();
+					window.location.reload();
 				}, 2000);
 			}
 		} catch (error) {
@@ -198,8 +219,21 @@ const EditShipment = () => {
 					validationSchema={validationSchema}
 					onSubmit={handleSubmit}
 				>
-					{({ values, setFieldValue, isSubmitting }) => (
+					{({
+						values,
+						setFieldValue,
+						isSubmitting,
+						errors,
+					}) => (
 						<Form>
+							{!isObjectEmpty(errors) && (
+								<Alert severity="error" sx={{ mb: 3 }}>
+									<Typography>
+										{JSON.stringify(errors)}
+									</Typography>
+								</Alert>
+							)}
+
 							{alertMessage && (
 								<Alert severity={alertSeverity} sx={{ mb: 2 }}>
 									{alertMessage}

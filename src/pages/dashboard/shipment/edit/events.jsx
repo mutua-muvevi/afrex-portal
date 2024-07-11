@@ -78,7 +78,7 @@ const ShippingEvents = ({ values }) => {
 								rows={4}
 							/>
 
-							{values.events.length > 1 && (
+							{values.events.length > 0 && (
 								<Button
 									type="button"
 									variant="outlined"
@@ -92,9 +92,8 @@ const ShippingEvents = ({ values }) => {
 					<Button
 						variant="contained"
 						color="primary"
-						onClick={() => push({
-
-						})}
+						onClick={() => push({})}
+						sx={{mt: 3}}
 					>
 						Add another event
 					</Button>

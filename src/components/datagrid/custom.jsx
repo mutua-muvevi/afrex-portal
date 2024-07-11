@@ -143,7 +143,7 @@ export default function DataGridCustom({
 						onRowClick={handleRowClick}
 						// renderCell={renderCell}
 					/>
-				</Box>
+				</Box>{console.log("Columns", columns)}
 			</StyledDataGridContainer>
 
 			<ModalComponent

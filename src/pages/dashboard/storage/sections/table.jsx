@@ -36,6 +36,7 @@ const StorageTable = () => {
 
 	return (
 		<>
+		{console.log("all storage", allStorage)}
 			<DataGridCustom
 				data={allStorage}
 				title="Storage List"

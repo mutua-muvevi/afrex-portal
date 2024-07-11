@@ -43,6 +43,8 @@ const ProductDetail = ({ values }) => {
 								<Textfield
 									label="Description"
 									name={`productDetails.${index}.description`}
+									multiline
+									rows={4}
 								/>
 								{values.productDetails.length > 1 && (
 									<Button
@@ -50,7 +52,7 @@ const ProductDetail = ({ values }) => {
 										variant="outlined"
 										onClick={() => remove(index)}
 									>
-										Remove the above event block
+										Remove the above product item
 									</Button>
 								)}
 							</Stack>
@@ -58,6 +60,8 @@ const ProductDetail = ({ values }) => {
 
 						<Button
 							type="button"
+							variant="contained"
+							sx={{ mt: 3 }}
 							onClick={() =>
 								push({
 									HSCode: "",

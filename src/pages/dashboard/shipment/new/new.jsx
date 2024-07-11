@@ -201,7 +201,7 @@ const AddShipment = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	}, []);
 
-	const handleSubmit = async (values, actions) => {
+	const handleSubmit = async (values) => {
 		try {
 			const response = await dispatch(addShipment(me._id, token, values));
 			// extract success message

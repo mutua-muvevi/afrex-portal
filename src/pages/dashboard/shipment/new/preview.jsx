@@ -13,45 +13,45 @@ const ShipmentPreview = ({ values }) => {
 				<Typography variant="h6"color="primary">Shipper's Detail</Typography>
 
 				<Typography variant="body1">
-					{values.shipper.fullname}
+					{values.shipper?.fullname}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.shipper.company}
+					{values.shipper?.company}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.shipper.address}
+					{values.shipper?.address}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.shipper.telephone}
+					{values.shipper?.telephone}
 				</Typography>
 
-				<Typography variant="body1">{values.shipper.email}</Typography>
+				<Typography variant="body1">{values.shipper?.email}</Typography>
 			</Stack>
 
 			<Stack direction="column" spacing={1} sx={styledStack}>
 				<Typography variant="h6"color="primary">Consignee's Detail</Typography>
 
 				<Typography variant="body1">
-					{values.cosignee.fullname}
+					{values.cosignee?.fullname}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.cosignee.company}
+					{values.cosignee?.company}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.cosignee.address}
+					{values.cosignee?.address}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.cosignee.telephone}
+					{values.cosignee?.telephone}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.cosignee.email}
+					{values.cosignee?.email}
 				</Typography>
 			</Stack>
 
@@ -59,23 +59,23 @@ const ShipmentPreview = ({ values }) => {
 				<Typography variant="h6"color="primary">Collector's Detail</Typography>
 
 				<Typography variant="body1">
-					{values.collector.fullname}
+					{values.collector?.fullname}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.collector.company}
+					{values.collector?.company}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.collector.address}
+					{values.collector?.address}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.collector.telephone}
+					{values.collector?.telephone}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.collector.email}
+					{values.collector?.email}
 				</Typography>
 			</Stack>
 
@@ -83,19 +83,19 @@ const ShipmentPreview = ({ values }) => {
 				<Typography variant="h6"color="primary">Departure</Typography>
 
 				<Typography variant="body1">
-					{values.departure.address}
+					{values.departure?.address}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.departure.airport_code}
+					{values.departure?.airport_code}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.departure.departure_date}
+					{values.departure?.departure_date}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.departure.departure_time}
+					{values.departure?.departure_time}
 				</Typography>
 			</Stack>
 
@@ -103,23 +103,23 @@ const ShipmentPreview = ({ values }) => {
 				<Typography variant="h6"color="primary"> Arrival/Destination </Typography>
 
 				<Typography variant="body1">
-					{values.arrival.address}
+					{values.arrival?.address}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.arrival.airport_code}
+					{values.arrival?.airport_code}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.arrival.arrival_date}
+					{values.arrival?.arrival_date}
 				</Typography>
 
 				<Typography variant="body1">
-					{values.arrival.arrival_time}
+					{values.arrival?.arrival_time}
 				</Typography>
 			</Stack>
 
-			{values.items.map((item, index) => (
+			{values?.items?.map((item, index) => (
 				<Stack
 					key={index}
 					direction="column"
@@ -128,17 +128,17 @@ const ShipmentPreview = ({ values }) => {
 				>
 					<Typography variant="h6"color="primary">Item {index + 1}</Typography>
 
-					<Typography variant="body1">{item.description}</Typography>
+					<Typography variant="body1">{item?.description}</Typography>
 
-					<Typography variant="body1">{item.unit}</Typography>
+					<Typography variant="body1">{item?.unit}</Typography>
 
-					<Typography variant="body1">{item.weight}</Typography>
+					<Typography variant="body1">{item?.weight}</Typography>
 
-					<Typography variant="body1">{item.amount}</Typography>
+					<Typography variant="body1">{item?.amount}</Typography>
 				</Stack>
 			))}
 
-			{values.events.map((item, index) => (
+			{values?.events?.map((event, index) => (
 				<Stack
 					key={index}
 					direction="column"
@@ -147,22 +147,22 @@ const ShipmentPreview = ({ values }) => {
 				>
 					<Typography variant="h6"color="primary">Event {index + 1}</Typography>
 
-					<Typography variant="body1">{item.date}</Typography>
+					<Typography variant="body1">{event?.date}</Typography>
 
-					<Typography variant="body1">{item.time}</Typography>
+					<Typography variant="body1">{event?.time}</Typography>
 
-					<Typography variant="body1">{item.address}</Typography>
+					<Typography variant="body1">{event?.address}</Typography>
 
-					<Typography variant="body1">{item.status}</Typography>
+					<Typography variant="body1">{event?.status}</Typography>
 
-					<Typography variant="body1">{item.description}</Typography>
+					<Typography variant="body1">{event?.description}</Typography>
 				</Stack>
 			))}
 
 			<Stack direction="row" spacing={1} sx={styledStack}>
 				<Typography variant="h6"color="primary">Track Number</Typography>
 
-				<Typography variant="body1">{values.track_number}</Typography>
+				<Typography variant="body1">{values?.track_number}</Typography>
 			</Stack>
 		</Stack>
 	);

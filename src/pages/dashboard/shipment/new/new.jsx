@@ -9,7 +9,9 @@ import {
 	Step,
 	StepLabel,
 	Stepper,
+	Typography,
 } from "@mui/material";
+import CircularProgress from '@mui/material/CircularProgress';
 
 import ShippingItems from "./items";
 import ShipmentShippers from "./shipper";
@@ -21,7 +23,8 @@ import ShippingDeparture from "./departure";
 import ShippingArrival from "./arrival";
 import Iconify from "../../../../components/iconify";
 import { addShipment } from "../../../../redux/slices/shipment";
-import { useDispatch, useSelector } from "../../../../redux/store"
+import { useDispatch, useSelector } from "../../../../redux/store";
+import { isObjectEmpty } from "../../../../utils/object";
 
 const initialValues = {
 	shipper: {
@@ -85,68 +88,88 @@ const initialValues = {
 		},
 	],
 
-	track_number: ""
+	track_number: "",
 };
 
 const validationSchema = Yup.object().shape({
 	shipper: Yup.object().shape({
-		fullname: Yup.string().required("Required"),
-		company: Yup.string().required("Required"),
-		address: Yup.string().required("Required"),
-		telephone: Yup.string().required("Required"),
+		fullname: Yup.string().required("The shipper's name is Required"),
+		company: Yup.string(),
+		address: Yup.string().required(" The address of shipper is Required"),
+		telephone: Yup.string().required(
+			"The phone number of shipper is Required"
+		),
 		email: Yup.string().email("Invalid email").required("Required"),
 	}),
 
-	consignee: Yup.object().shape({
-		fullname: Yup.string().required("Required"),
-		company: Yup.string().required("Required"),
-		address: Yup.string().required("Required"),
-		telephone: Yup.string().required("Required"),
+	cosignee: Yup.object().shape({
+		fullname: Yup.string().required("The name of cosignee is Required"),
+		company: Yup.string(),
+		address: Yup.string().required("The address of cosignee is Required"),
+		telephone: Yup.string(),
 		email: Yup.string().email("Invalid email").required("Required"),
 	}),
 
 	collector: Yup.object().shape({
-		fullname: Yup.string().required("Required"),
-		company: Yup.string().required("Required"),
-		address: Yup.string().required("Required"),
-		telephone: Yup.string().required("Required"),
-		email: Yup.string().email("Invalid email").required("Required"),
+		fullname: Yup.string().required("The collector's name is Required"),
+		company: Yup.string(),
+		address: Yup.string().required("The collector's address is Required"),
+		telephone: Yup.string(),
+		email: Yup.string()
+			.email("Invalid email")
+			.required("The collector's email is Required"),
 	}),
 
 	departure: Yup.object().shape({
-		address: Yup.string().required("Required"),
-		airport_code: Yup.string().required("Required"),
-		departure_date: Yup.string().required("Required"),
-		departure_time: Yup.string().required("Required"),
+		address: Yup.string().required("The address of departure is Required"),
+		airport_code: Yup.string().required(
+			"The airport code of departure is Required"
+		),
+		departure_date: Yup.string().required(
+			"The date of departure is Required"
+		),
+		departure_time: Yup.string().required(
+			"The time of departure is Required"
+		),
 	}),
 
 	arrival: Yup.object().shape({
-		address: Yup.string().required("Required"),
-		airport_code: Yup.string().required("Required"),
-		arrival_date: Yup.string().required("Required"),
-		arrival_time: Yup.string().required("Required"),
+		address: Yup.string().required("Address of Destination is Required"),
+		airport_code: Yup.string().required(
+			"Airport code of Destination is Required"
+		),
+		arrival_date: Yup.string(),
+		arrival_time: Yup.string(),
 	}),
 
 	items: Yup.array().of(
 		Yup.object().shape({
 			description: Yup.string(),
-			unit: Yup.string().required("Required"),
-			weight: Yup.string().required("Required"),
-			amount: Yup.string().required("Required"),
+			unit: Yup.string().required("Unit of measurement is Required"),
+			weight: Yup.string().required("Weight of the item is Required"),
+			amount: Yup.string(),
 		})
 	),
 
 	events: Yup.array().of(
 		Yup.object().shape({
-			date: Yup.string().required("Required"),
-			time: Yup.string().required("Required"),
-			address: Yup.string().required("Required"),
-			status: Yup.string().required("Required"),
-			description: Yup.string().required("Required"),
+			date: Yup.string().required("Date of the event is Required"),
+			time: Yup.string().required("Time of the event is Required"),
+			address: Yup.string().required(
+				"The address of the event is Required"
+			),
+			status: Yup.string().required(
+				"The status of the event is Required"
+			),
+			description: Yup.string().required(
+				"The description of the event is Required"
+			),
 		})
 	),
 
-	track_number: Yup.string().required()
+	track_number: Yup.string().required(
+		"Track number for this shipment is Required"
+	),
 });
 
 const steps = [
@@ -165,10 +188,10 @@ const AddShipment = () => {
 
 	const [alertMessage, setAlertMessage] = useState("");
 	const [alertSeverity, setAlertSeverity] = useState("info");
-	
+
 	const token = localStorage.getItem("token");
-	const { me } = useSelector((state) => state.user)
-	const dispatch = useDispatch()
+	const { me } = useSelector((state) => state.user);
+	const dispatch = useDispatch();
 
 	const handleNext = useCallback(() => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -178,9 +201,9 @@ const AddShipment = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	}, []);
 
-	const handleSubmit =  async (values, actions) => {
+	const handleSubmit = async (values) => {
 		try {
-			const response = await dispatch(addShipment(me._id, token,  values));
+			const response = await dispatch(addShipment(me._id, token, values));
 			// extract success message
 			const { success, message } = response;
 
@@ -219,8 +242,25 @@ const AddShipment = () => {
 					validationSchema={validationSchema}
 					onSubmit={handleSubmit}
 				>
-					{({ values, setFieldValue, isSubmitting }) => (
+					{({ values, setFieldValue, isSubmitting, errors, isValid, dirty }) => (
 						<Form>
+							{
+								!dirty && (
+									<Alert severity="error" sx={{mb: 3}}>
+										<Typography>
+											You haven&apos;t made any changes.
+										</Typography>
+									</Alert>
+								)
+							}
+							{!isObjectEmpty(errors) && (
+								<Alert severity="error" sx={{ mb: 3 }}>
+									<Typography>
+										{JSON.stringify(errors)}
+									</Typography>
+								</Alert>
+							)}
+
 							{alertMessage && (
 								<Alert severity={alertSeverity} sx={{ mb: 2 }}>
 									{alertMessage}
@@ -307,11 +347,12 @@ const AddShipment = () => {
 									// 'Submit' button on the final step
 									<Button
 										variant="contained"
-										disabled={isSubmitting}
+										disabled={isSubmitting || !isValid || !dirty}
 										endIcon={<Iconify icon="mdi:check" />}
 										onClick={() => handleSubmit(values)}
+										startIcon={isSubmitting ? <CircularProgress size={24} /> : null}
 									>
-										Submit
+										{isSubmitting ? "Submitting, Please Wait..."  : "Submit"}
 									</Button>
 								) : (
 									// 'Next' button on all other steps
@@ -322,7 +363,6 @@ const AddShipment = () => {
 										endIcon={
 											<Iconify icon="mdi:arrow-right" />
 										}
-										// disabled={!isValid }
 									>
 										Next
 									</Button>

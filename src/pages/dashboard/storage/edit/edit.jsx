@@ -9,7 +9,9 @@ import {
 	Step,
 	StepLabel,
 	Stepper,
+	Typography,
 } from "@mui/material";
+import CircularProgress from '@mui/material/CircularProgress';
 
 import Depositor from "./depositor";
 import Acceptance from "./acceptance";
@@ -21,57 +23,54 @@ import Iconify from "../../../../components/iconify";
 import { editStorage } from "../../../../redux/slices/storage";
 import { useDispatch, useSelector } from "../../../../redux/store";
 import Preview from "./preview";
+import { isObjectEmpty } from "../../../../utils/object.js";
 
 const validationSchema = Yup.object().shape({
 	depositor: Yup.object().shape({
-		fullname: Yup.string().required("Required"),
-		company: Yup.string().required("Required"),
-		address: Yup.string().required("Required"),
-		telephone: Yup.string().required("Required"),
+		fullname: Yup.string().required("The depositor's fullname is Required"),
+		company: Yup.string(),
+		address: Yup.string().required("The depositor's address is Required"),
+		telephone: Yup.string().required("The depositor's phone number is Required"),
 		email: Yup.string().email("Invalid email").required("Required"),
 	}),
 	owner: Yup.object().shape({
-		fullname: Yup.string().required("Required"),
-		company: Yup.string().required("Required"),
-		address: Yup.string().required("Required"),
-		telephone: Yup.string().required("Required"),
-		email: Yup.string().email("Invalid email").required("Required"),
-		identificationNo: Yup.string().required("Required"),
-		accountNo: Yup.string().required("Required"),
+		fullname: Yup.string().required("The owner's fullname is Required"),
+		company: Yup.string(),
+		address: Yup.string().required("The owner's address is Required"),
+		telephone: Yup.string(),
+		email: Yup.string().email("Invalid email").required("The owner's email is Required"),
+		identificationNo: Yup.string().required("The owner's ID number Required"),
+		accountNo: Yup.string().required("The owner's account number Required"),
 	}),
 	productDetails: Yup.array().of(
 		Yup.object().shape({
-			HSCode: Yup.string().required("Required"),
-			packagesNo: Yup.string().required("Required"),
-			netQuantity: Yup.string().required("Required"),
-			marketRate: Yup.string().required("Required"),
-			totalMarketValue: Yup.string().required("Required"),
-			description: Yup.string().required("Required"),
+			HSCode: Yup.string().required("The product's HS code is Required"),
+			packagesNo: Yup.string().required("The product's packages number is Required"),
+			netQuantity: Yup.string().required("The product's net quantity is Required"),
+			marketRate: Yup.string().required("The product's market rate is Required"),
+			totalMarketValue: Yup.string().required("The product's total market value is Required"),
+			description: Yup.string().required("The product's description is Required"),
 		})
 	),
 
 	acceptance: Yup.object().shape({
 		from: Yup.object().shape({
-			date: Yup.string().required("Required"),
-			time: Yup.string().required("Required"),
+			date: Yup.string().required("Date accepted is Required"),
+			time: Yup.string().required("Time accepted is Required"),
 		}),
-		// to: Yup.object().shape({
-		// 	date: Yup.string().required("Required"),
-		// 	time: Yup.string().required("Required"),
-		// }),
 	}),
 
-	privateMarks: Yup.string().required("Required"),
-	handlingCharges: Yup.string().required("Required"),
-	assuredFor: Yup.string().required("Required"),
-	receiptNumber: Yup.string().required("Required"),
-	receiptValidUpTo: Yup.string().required("Required"),
-	productOrigin: Yup.string().required("Required"),
-	wareHouseLocation: Yup.string().required("Required"),
-	receivedBy: Yup.string().required("Required"),
-	depositDate: Yup.string().required("Required"),
-	depositTime: Yup.string().required("Required"),
-	track_number: Yup.string().required("Required"),
+	privateMarks: Yup.string().required("Private marks is Required"),
+	handlingCharges: Yup.string(),
+	assuredFor: Yup.string().required("Assured for Required"),
+	receiptNumber: Yup.string().required("Receipt number is Required"),
+	receiptValidUpTo: Yup.string().required("Receipt valid up to is Required"),
+	productOrigin: Yup.string().required("Product origin is required Required"),
+	wareHouseLocation: Yup.string().required("Warehouse location is Required"),
+	receivedBy: Yup.string().required("Receipient is Required"),
+	depositDate: Yup.string().required("Date of deposit is Required"),
+	depositTime: Yup.string().required("Time of deposit is Required"),
+	track_number: Yup.string().required("Track number is Required"),
 });
 
 const steps = [
@@ -151,7 +150,7 @@ const EditStorage = () => {
 		
 	};
 
-	const handleSubmit = async (values, actions) => {
+	const handleSubmit = async (values) => {
 		try {
 			const response = await dispatch(editStorage(me._id, token,  storage._id, values));
 			// extract success message
@@ -191,8 +190,26 @@ const EditStorage = () => {
 					validationSchema={validationSchema}
 					onSubmit={handleSubmit}
 				>
-					{({ values, setFieldValue, isSubmitting }) => (
+					{({ values, setFieldValue, isSubmitting, errors, isValid, dirty }) => (
 						<Form>
+							{
+								!dirty && (
+									<Alert severity="error" sx={{mb: 3}}>
+										<Typography>
+											You haven&apos;t made any changes.
+										</Typography>
+									</Alert>
+								)
+							}
+
+							{!isObjectEmpty(errors) && (
+								<Alert severity="error" sx={{ mb: 3 }}>
+									<Typography>
+										{JSON.stringify(errors)}
+									</Typography>
+								</Alert>
+							)}
+							
 							{alertMessage && (
 								<Alert severity={alertSeverity} sx={{ mb: 2 }}>
 									{alertMessage}
@@ -264,11 +281,12 @@ const EditStorage = () => {
 									// 'Submit' button on the final step
 									<Button
 										variant="contained"
-										disabled={isSubmitting}
+										disabled={isSubmitting || !isValid || !dirty}
 										endIcon={<Iconify icon="mdi:check" />}
 										onClick={() => handleSubmit(values)}
+										startIcon={isSubmitting ? <CircularProgress size={24} /> : null}
 									>
-										Submit
+										{isSubmitting ? "Submitting, Please Wait..."  : "Submit"}
 									</Button>
 								) : (
 									// 'Next' button on all other steps
@@ -279,7 +297,6 @@ const EditStorage = () => {
 										endIcon={
 											<Iconify icon="mdi:arrow-right" />
 										}
-										// disabled={!isValid }
 									>
 										Next
 									</Button>

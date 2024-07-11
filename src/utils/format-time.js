@@ -16,7 +16,6 @@ export function fDate(date, newFormat) {
 }
 
 export function fDateAlt(dateString) {
-	console.log(dateString);
 
 	let parsedDate;
 	// Check if the dateString is in DD/MM/YYYY format
@@ -52,7 +51,7 @@ export function fToNow(date) {
 	return date
 		? formatDistanceToNow(new Date(date), {
 				addSuffix: true,
-		  })
+			})
 		: "";
 }
 

@@ -162,14 +162,17 @@ export default slice.reducer;
 export function fetchMe(token) {
 	return async (dispatch) => {
 		dispatch(slice.actions.startLoading());
-		
+
 		try {
-			const response = await axios.get("https://afrex-bridge-connections-server.onrender.com/api/user/fetch/me", {
-				headers: {
-					Authorization: token,
-				},
-			});
-			
+			const response = await axios.get(
+				"https://afrex-bridge-connections-server.onrender.com/api/user/fetch/me",
+				{
+					headers: {
+						Authorization: token,
+					},
+				}
+			);
+
 			dispatch(slice.actions.fetchMe(response.data.data));
 			return response.data.data;
 		} catch (error) {
@@ -180,7 +183,7 @@ export function fetchMe(token) {
 }
 
 //-----------register
-export function register(values){
+export function register(values) {
 	return async (dispatch) => {
 		dispatch(slice.actions.startLoading());
 
@@ -198,12 +201,12 @@ export function register(values){
 			return response;
 		} catch (error) {
 			dispatch(slice.actions.registerHasError(error.response));
-			throw error.response
+			throw error.response;
 		}
-	}
+	};
 }
 //-----------------otp
-export function postOTPCode(userID, values, token){
+export function postOTPCode(userID, values, token) {
 	return async (dispatch) => {
 		dispatch(slice.actions.startLoading());
 
@@ -214,24 +217,22 @@ export function postOTPCode(userID, values, token){
 				{
 					headers: {
 						"Content-Type": "application/json",
-						"Authorization": token
+						Authorization: token,
 					},
-				
 				}
 			);
 
 			dispatch(slice.actions.postOTPCode(response.data));
 			return response;
-
 		} catch (error) {
 			dispatch(slice.actions.postOTPCodeHasError(error.response));
-			throw error.response
+			throw error.response;
 		}
-	}
+	};
 }
 
 //----------------resend otp
-export function resendOTPCode(userID, token){
+export function resendOTPCode(userID, token) {
 	return async (dispatch) => {
 		dispatch(slice.actions.startLoading());
 
@@ -241,24 +242,22 @@ export function resendOTPCode(userID, token){
 				{
 					headers: {
 						"Content-Type": "application/json",
-						"Authorization": token
+						Authorization: token,
 					},
-				
 				}
 			);
-			
+
 			dispatch(slice.actions.resendOTPCode(response.data));
 			return response;
-
 		} catch (error) {
 			dispatch(slice.actions.resendOTPCodeHasError(error.response));
-			throw error.response
+			throw error.response;
 		}
-	}
+	};
 }
 
 //------------login
-export function loginUser(values){
+export function loginUser(values) {
 	return async (dispatch) => {
 		dispatch(slice.actions.startLoading());
 
@@ -273,19 +272,18 @@ export function loginUser(values){
 				}
 			);
 
-			console.log("user login response", response)
+			console.log("user login response", response);
 			dispatch(slice.actions.loginUser(response.data));
 			return response;
-
 		} catch (error) {
 			dispatch(slice.actions.loginHasError(error.response));
-			throw error.response
+			throw error.response;
 		}
-	}
+	};
 }
 
 //------------reset password
-export function resetPassword(values){
+export function resetPassword(values) {
 	return async (dispatch) => {
 		dispatch(slice.actions.startLoading());
 
@@ -302,16 +300,15 @@ export function resetPassword(values){
 
 			dispatch(slice.actions.resetPassword(response.data));
 			return response;
-
 		} catch (error) {
 			dispatch(slice.actions.resetPasswordHasError(error.response));
-			throw error.response
+			throw error.response;
 		}
-	}
+	};
 }
 
 //------------new password
-export function newPassword(values, resetToken){
+export function newPassword(values, resetToken) {
 	return async (dispatch) => {
 		dispatch(slice.actions.startLoading());
 
@@ -328,16 +325,15 @@ export function newPassword(values, resetToken){
 
 			dispatch(slice.actions.newPassword(response.data));
 			return response;
-
 		} catch (error) {
 			dispatch(slice.actions.newPasswordHasError(error.response));
-			throw error.response
+			throw error.response;
 		}
-	}
+	};
 }
 
 //------------edit user
-export function editUser(values, token, userID){
+export function editUser(values, token, userID) {
 	return async (dispatch) => {
 		dispatch(slice.actions.startLoading());
 
@@ -348,17 +344,16 @@ export function editUser(values, token, userID){
 				{
 					headers: {
 						"Content-Type": "application/json",
-						"Authorization": token
+						Authorization: token,
 					},
 				}
 			);
 
 			dispatch(slice.actions.editUser(response.data));
 			return response;
-
 		} catch (error) {
 			dispatch(slice.actions.editUserHasError(error.response));
-			throw error.response
+			throw error.response;
 		}
-	}
+	};
 }

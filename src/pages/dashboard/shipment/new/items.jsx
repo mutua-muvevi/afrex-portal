@@ -37,7 +37,6 @@ const ShippingItems = ({ values }) => {
 								<Textfield
 									label="Pieces"
 									name={`items.${index}.amount`}
-									type="number"
 								/>
 								<Textfield
 									label="Description"

@@ -10,7 +10,7 @@ const ShipmentTable = () => {
 	const [openEdit, setOpenEdit] = useState(false);
 	const [openDelete, setOpenDelete] = useState(false);
 	const dispatch = useDispatch();
-	const { shipments: { data: allShipment } } = useSelector((state) => state.shipment);
+	const { shipments: { data: allShipment } } = useSelector((state) => state?.shipment);
 
 	const modalActions = [
 		{

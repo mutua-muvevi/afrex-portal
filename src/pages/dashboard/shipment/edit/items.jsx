@@ -7,6 +7,13 @@ const ShippingItems = ({ values }) => {
 	const theme = useTheme();
 	return (
 		<Stack  direction="column" spacing={3}>
+			{console.log(values)}
+			<Textfield
+				name="track_number"
+				label="Track Number"
+				value={values.track_number}
+				disabled
+			/>
 			<FieldArray name="items">
 				{({ push, remove }) => (
 					<>
@@ -41,7 +48,7 @@ const ShippingItems = ({ values }) => {
 									multiline
 									rows={4}
 								/>
-								{values.items.length > 1 && (
+								{values.items.length > 0 && (
 									<Button
 										type="button"
 										variant="outlined"
@@ -56,6 +63,7 @@ const ShippingItems = ({ values }) => {
 							variant="contained"
 							color="primary"
 							onClick={() => push({})}
+							sx={{mb: 3}}
 						>
 							Add item
 						</Button>

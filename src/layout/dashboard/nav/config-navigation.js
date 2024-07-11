@@ -20,12 +20,18 @@ const navConfig = [
 	{
 		subheader: "main",
 		items: [
-
 			// leads
 			{
 				title: "leads",
 				path: PATH_DASHBOARD.general.leads,
 				icon: ICONS.leads,
+			},
+
+			// emails
+			{
+				title: "emails",
+				path: PATH_DASHBOARD.general.emails,
+				icon: ICONS.email,
 			},
 
 			// shipment
@@ -42,13 +48,6 @@ const navConfig = [
 				icon: ICONS.storage,
 			},
 
-			// emails
-			{
-				title: "emails",
-				path: PATH_DASHBOARD.general.emails,
-				icon: ICONS.email,
-			},
-
 			//flights
 			{
 				title: "flights",
@@ -57,8 +56,6 @@ const navConfig = [
 			},
 		],
 	},
-
-	
 ];
 
 export default navConfig;

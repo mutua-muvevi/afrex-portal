@@ -45,11 +45,6 @@ export const processDataForGrid = (data, nestedDataRenderer) => {
 	const rows = [];
 	let itemData = {}
 
-	// Define a function to pluralize the column name if needed
-	const pluralize = (count, singular) => {
-		return count === 1 ? singular : singular + "s";
-	};
-
 	// Process each data item
 	data.forEach((item, index) => {
 		itemData = item ;
@@ -81,7 +76,7 @@ export const processDataForGrid = (data, nestedDataRenderer) => {
 					let column = {
 						field: key,
 						headerName: headerName,
-						flex: 1,
+						minWidth: 200
 						// Add more properties to the column if needed
 					};
 
@@ -89,7 +84,7 @@ export const processDataForGrid = (data, nestedDataRenderer) => {
 						// Use a custom renderCell function for arrays to show the count
 						column.renderCell = (params) => {
 							const count = params.value.length;
-							return `${count} ${pluralize(count, key)}`; // e.g., "3 Participants"
+							return `${count} ${key}`; // e.g., "3 Participants"
 						};
 					} else if (
 						typeof item[key] === "object" &&
@@ -113,7 +108,7 @@ export const processDataForGrid = (data, nestedDataRenderer) => {
 					// Display date pr aircraft or airport if available, else display the name of the object
 					processedItem[key] = item[key].date
 						? fDateAlt(item[key].date)
-						: item[key].name || item[key].title || item[key].aircraft || key || "";
+						: item[key].fullname || item[key].name || item[key].title || item[key].aircraft  || key || "";
 				}
 			}
 		});

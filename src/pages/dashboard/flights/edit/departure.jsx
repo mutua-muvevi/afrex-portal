@@ -21,6 +21,7 @@ const FlightDeparture = () => {
 				label="Timezone"
 				name="departureTime.timezone"
 				size="medium"
+				placeholder="eg Nairobi Timezone"
 				InputProps={{
 					endAdornment: (
 						<Iconify icon="subway:world-1" />

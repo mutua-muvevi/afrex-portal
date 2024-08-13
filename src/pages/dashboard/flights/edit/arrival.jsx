@@ -2,6 +2,7 @@ import { Stack } from "@mui/material";
 import DateField from "../../../../components/form/date/date";
 import TimeField from "../../../../components/form/date/time";
 import Textfield from "../../../../components/form/textfield/textfield";
+import Iconify from "../../../../components/iconify/Iconify";
 
 const FlightArrival = () => {
 	return (
@@ -19,6 +20,12 @@ const FlightArrival = () => {
 			<Textfield
 				label="Timezone"
 				name="arrivalTime.timezone"
+				placeholder="eg Nairobi Timezone"
+				InputProps={{
+					endAdornment: (
+						<Iconify icon="subway:world-1" />
+					),
+				}}
 			/>
 		</Stack>
 	);

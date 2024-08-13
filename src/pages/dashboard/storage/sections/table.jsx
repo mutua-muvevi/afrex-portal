@@ -36,7 +36,6 @@ const StorageTable = () => {
 
 	return (
 		<>
-		{console.log("all storage", allStorage)}
 			<DataGridCustom
 				data={allStorage}
 				title="Storage List"
@@ -56,7 +55,7 @@ const StorageTable = () => {
 
 			<ModalComponent
 				open={openDelete}
-				onClose={() => setOpenEdit(false)}
+				onClose={() => setOpenDelete(false)}
 				title="Delete Storage"
 				maxWidth="sm"
 				height={250}

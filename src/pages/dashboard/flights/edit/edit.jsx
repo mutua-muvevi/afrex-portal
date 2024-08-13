@@ -23,24 +23,25 @@ import FlightDestination from "./destination";
 import FlightPreview from "./preview";
 
 const validationSchema = Yup.object().shape({
+	ref_number: Yup.string().required("Required"),
 	airplane: Yup.object().shape({
-		airline: Yup.string().required("Required"),
-		aircraft: Yup.string().required("Required"),
+		airline: Yup.string(),
+		aircraft: Yup.string(),
 		regNo: Yup.string().required("Required"),
 	}),
 	departureTime: Yup.object().shape({
 		date: Yup.string().required("Required"),
 		time: Yup.string().required("Required"),
-		timezone: Yup.string().required("Required"),
+		timezone: Yup.string(),
 	}),
 	arrivalTime: Yup.object().shape({
 		date: Yup.string().required("Required"),
 		time: Yup.string().required("Required"),
-		timezone: Yup.string().required("Required"),
+		timezone: Yup.string(),
 	}),
 	status: Yup.object().shape({
-		title: Yup.string().required("Required"),
-		description: Yup.string().required("Required"),
+		title: Yup.string(),
+		description: Yup.string(),
 	}),
 	originAirport: Yup.object().shape({
 		name: Yup.string().required("Required"),
@@ -84,6 +85,7 @@ const EditFlight = () => {
 	}, []);
 
 	const initialValues = {
+		ref_number: flight && flight.ref_number ? flight.ref_number : "",
 		airplane: flight && flight.airplane ? flight.airplane : {
 			airline: "",
 			aircraft: "",

@@ -19,6 +19,7 @@ const FlightArrival = () => {
 			<Textfield
 				label="Timezone"
 				name="arrivalTime.timezone"
+				placeholder="eg Nairobi Timezone"
 			/>
 		</Stack>
 	);

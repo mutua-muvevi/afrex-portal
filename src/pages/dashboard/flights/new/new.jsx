@@ -23,6 +23,7 @@ import FlightDestination from "./destination";
 import FlightPreview from "./preview";
 
 const initialValues = {
+	ref_number: "",
 	airplane: {
 		airline: "",
 		aircraft: "",
@@ -52,38 +53,41 @@ const initialValues = {
 		city: "",
 		country: "",
 	},
+
 };
 
 const validationSchema = Yup.object().shape({
+	ref_number: Yup.string().required("Required"),
 	airplane: Yup.object().shape({
-		airline: Yup.string().required("Required"),
-		aircraft: Yup.string().required("Required"),
+		airline: Yup.string(),
+		aircraft: Yup.string(),
 		regNo: Yup.string().required("Required"),
 	}),
 	departureTime: Yup.object().shape({
-		date: Yup.string().required("Required"),
-		time: Yup.string().required("Required"),
-		timezone: Yup.string().required("Required"),
+		date: Yup.string().required("Date of departure is Required"),
+		time: Yup.string().required("Time of departure is Required"),
+		timezone: Yup.string(),
 	}),
 	arrivalTime: Yup.object().shape({
-		date: Yup.string().required("Required"),
-		time: Yup.string().required("Required"),
-		timezone: Yup.string().required("Required"),
+		date: Yup.string().required("Date of departure is required"),
+		time: Yup.string().required("Time of departure is Required"),
+		timezone: Yup.string(),
 	}),
 	status: Yup.object().shape({
-		title: Yup.string().required("Required"),
-		description: Yup.string().required("Required"),
+		title: Yup.string(),
+		description: Yup.string(),
 	}),
 	originAirport: Yup.object().shape({
-		name: Yup.string().required("Required"),
-		city: Yup.string().required("Required"),
-		country: Yup.string().required("Required"),
+		name: Yup.string().required("Origin airport name is Required"),
+		city: Yup.string().required("Origin airport city is Required"),
+		country: Yup.string().required("Origin airport country is  Required"),
 	}),
 	destinationAirport: Yup.object().shape({
-		name: Yup.string().required("Required"),
-		city: Yup.string().required("Required"),
-		country: Yup.string().required("Required"),
+		name: Yup.string().required("Destination airport name is Required"),
+		city: Yup.string().required("Destination airport city is Required"),
+		country: Yup.string().required("Destination airport country is Required"),
 	}),
+
 });
 
 const steps = [

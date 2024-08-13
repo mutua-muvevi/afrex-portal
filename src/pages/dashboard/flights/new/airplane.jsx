@@ -7,6 +7,7 @@ const FlightAirplane = () => {
 		<Textfield label="Airline" name="airplane.airline" />
 		<Textfield label="Aircraft" name="airplane.aircraft" />
 		<Textfield label="Registration Number" name="airplane.regNo" />
+		<Textfield label="Booking Reference Number" name="ref_number" />
 	</Stack>
   )
 }

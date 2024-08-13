@@ -162,6 +162,7 @@ export function addFlight(userID, token, values) {
 
 		try {
 			const response = await axios.post(
+				// `http://localhost:65000/api/flight/${userID}/post`,
 				`https://afrex-bridge-connections-server.onrender.com/api/flight/${userID}/post`,
 				values,
 				{

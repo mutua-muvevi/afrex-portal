@@ -57,8 +57,8 @@ const FlightTable = () => {
 				open={openDelete}
 				onClose={() => setOpenDelete(false)}
 				title="Delete Flight"
-				maxWidth="md"
-				height="50vh"
+				maxWidth="sm"
+				height={250}
 			>
 				<DeleteFlight onClose={() => setOpenDelete(false)}/>
 			</ModalComponent> 
